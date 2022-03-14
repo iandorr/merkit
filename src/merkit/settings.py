@@ -181,7 +181,8 @@ INSTALLED_APPS = [
     'djangocms_video',
     'dynamic_preferences',
 
-    'merkit'
+    'merkit',
+    'contact_form',
 ]
 
 LANGUAGES = (
