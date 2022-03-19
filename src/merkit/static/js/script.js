@@ -47,6 +47,14 @@ const subjectError = document.querySelector("#subject ~ span.error");
 const message = document.getElementById("message");
 const messageError = document.querySelector("#message ~ span.error");
 const emailInvalid = document.querySelectorAll("#mail ~ .invalid-feedback");
+
+
+const SubmitButton = document.getElementById("form_submit_button");
+
+document.getElementById("id_captcha").dataset.callback = "reveal_button";
+function reveal_button(){
+  SubmitButton.removeAttribute('disabled');
+}
 /*
 (function () {
   "use strict";

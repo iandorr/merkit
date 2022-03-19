@@ -331,3 +331,8 @@ input {
     position: relative;
   }
 }
+
+.captcha{
+  width: 304px;
+  margin: auto;
+}

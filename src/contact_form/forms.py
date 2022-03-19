@@ -1,4 +1,6 @@
 from django import forms
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 class SubmitContactForm(forms.Form):
 
@@ -11,6 +13,8 @@ class SubmitContactForm(forms.Form):
 
     subject = forms.CharField(max_length=50,required=True,min_length=4,widget=forms.TextInput(attrs={'id':'subject'}))
     text = forms.CharField(widget=forms.Textarea(attrs={'rows':5,'cols':20,'id':'message'}))
+
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
 
     def __init__(self, *args, **kwargs):
         super(SubmitContactForm, self).__init__(*args, **kwargs)

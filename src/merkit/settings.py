@@ -180,6 +180,7 @@ INSTALLED_APPS = [
     'djangocms_googlemap',
     'djangocms_video',
     'dynamic_preferences',
+    'captcha',
 
     'merkit',
     'contact_form',
@@ -251,3 +252,12 @@ if DEBUG is True:
     EMAIL_HOST_USER = ''
     EMAIL_HOST_PASSWORD = ''
     EMAIL_USE_TLS = False
+
+
+# TODO: create key on admin google account
+RECAPTCHA_PUBLIC_KEY = 'XXX'
+RECAPTCHA_PRIVATE_KEY = 'XXX'
+
+# RECAPTCHA_DOMAIN = 'www.recaptcha.net'
+RECAPTCHA_REQUIRED_SCORE = 0.85
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']

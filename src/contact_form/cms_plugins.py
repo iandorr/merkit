@@ -21,7 +21,11 @@ class ContactFormPlugin(CMSPluginBase):
 
         if request.method == "POST":
             form = SubmitContactForm(request.POST)
-            #TODO do smt with form
+            # TODO: send mail using the custom server ... smt like send_mail(), mail server not set up
+            if form.is_valid():
+                print("Human")
+            else:
+                print("Bot")
         else:
             form = SubmitContactForm()
             context.update({

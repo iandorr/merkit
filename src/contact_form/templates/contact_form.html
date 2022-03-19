@@ -60,8 +60,11 @@
                         <span class="error"></span>
                     </div>
                 </div>
+                <div class="mb-3 captcha">
+                    {{ form.captcha }}
+                </div>
                 <div class="mb-3">
-                    <button class="fw-bold fs-3 btn btn-primary my-5 width-100 py-2" name="contact_submit">Odeslat</button>
+                    <button class="fw-bold fs-3 btn btn-primary my-5 width-100 py-2" id="form_submit_button" name="contact_submit" disabled>Odeslat</button>
                 </div>
                 <div>
                     <p class="m-0 fs-5">

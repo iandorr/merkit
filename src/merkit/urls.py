@@ -12,10 +12,7 @@ admin.autodiscover()
 
 urlpatterns = [
     path("sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
-    #url(r'^$', RedirectView.as_view(url='/home/')),
-    #re_path(r'^$', views.main_page, name='main_page'),
 ]
-
 
 urlpatterns += i18n_patterns(path("admin/", admin.site.urls), path("", include("cms.urls")))
 
