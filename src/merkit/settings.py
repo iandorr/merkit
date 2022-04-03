@@ -15,6 +15,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from distutils.util import strtobool
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,9 +28,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = strtobool(config('DEBUG'))
+    
+if DEBUG:
+    ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = []
+else:
+    ALLOWED_HOSTS = ['']        # IP of the virtual machine
 
 
 # Application definition
@@ -90,11 +95,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
-STATIC_ROOT = os.path.join(DATA_DIR, 'static')
+STATIC_ROOT = os.path.join(DATA_DIR, 'staticfiles')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'merkit', 'static'),
 )
+
 SITE_ID = 1
 
 
@@ -126,6 +132,8 @@ TEMPLATES = [
 
 
 MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'cms.middleware.utils.ApphookReloadMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -137,10 +145,11 @@ MIDDLEWARE = [
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
-    'cms.middleware.language.LanguageCookieMiddleware'
+    'cms.middleware.language.LanguageCookieMiddleware',
 ]
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'djangocms_admin_style',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -155,8 +164,8 @@ INSTALLED_APPS = [
     'sekizai',
     'treebeard',
     'djangocms_text_ckeditor',
-    'filer',
     'easy_thumbnails',
+    'filer',
     'djangocms_bootstrap4',
     'djangocms_bootstrap4.contrib.bootstrap4_alerts',
     'djangocms_bootstrap4.contrib.bootstrap4_badge',
@@ -211,11 +220,15 @@ CMS_LANGUAGES = {
 
 CMS_TEMPLATES = (
     ## Customize this
-    ('fullwidth.html', 'Fullwidth'),
-    ('index.html',"Index")
+    ('index.html',"Index"),
 )
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 CMS_PERMISSION = True
 
@@ -246,7 +259,7 @@ DJANGOCMS_STYLE_TAGS = ['div', 'article', 'section', 'header', 'footer',
 
 # EMAIL
 
-if DEBUG is True:
+if DEBUG:
     EMAIL_HOST = 'localhost'
     EMAIL_PORT = '1025'
     EMAIL_HOST_USER = ''
@@ -255,8 +268,9 @@ if DEBUG is True:
 
 
 # TODO: create key on admin google account
-RECAPTCHA_PUBLIC_KEY = 'XXX'
-RECAPTCHA_PRIVATE_KEY = 'XXX'
+
+RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 
 # RECAPTCHA_DOMAIN = 'www.recaptcha.net'
 RECAPTCHA_REQUIRED_SCORE = 0.85

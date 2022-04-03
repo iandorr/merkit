@@ -24,3 +24,4 @@ pytz
 python-decouple==3.6
 django-dynamic-preferences==1.12.0
 django-recaptcha==3.0.0
+whitenoise
