@@ -1,0 +1,63 @@
+{% load cms_tags menu_tags sekizai_tags %}
+{% load static %}
+<html>
+    <section class="bg-light p-5 text-center text-dark bg_img" id="services">
+        <div class="container h3_heading_about">
+            {% placeholder services or %}
+                <h3>Naše Služby</h3>
+            {% endplaceholder %}
+        </div>
+        <div class="container">
+            <div class="d-lg-flex flip-card-container">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img class="img-fluid" src="{% static "img/pictograms/system_narrow.png" %}" alt="">
+                            {% placeholder card_1_front or %}
+                                <p>Aplikace na míru</p>
+                            {% endplaceholder %}
+                        </div>
+                        <div class="flip-card-back p-5">
+                            {% placeholder card_1_back or %}
+                                <h2>Aplikace na míru</h2>
+                                <p class="p-5">Potřebujete vytvořit novou webovou aplikaci? Na základě požadavků navrhneme a vytvoříme aplikaci přesně podle vašich představ.</p>
+                            {% endplaceholder %}
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img class="img-fluid" src="{% static "img/pictograms/bezpecnost_narrow.png" %}" alt="">
+                            {% placeholder card_2_front or %}
+                                <p>Bezpečnost</p>
+                            {% endplaceholder %}
+                        </div>
+                        <div class="flip-card-back p-5">
+                            {% placeholder card_2_back or %}
+                                <h2>Bezpečnost</h2>
+                                <p class="p-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque eaque assumenda perferendis ullam nesciunt.</p>
+                            {% endplaceholder %}
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img class="img-fluid" src="{% static "img/pictograms/aplikace_narrow.png" %}" alt="">
+                            {% placeholder card_3_front or %}
+                                <p>Správa systému</p>
+                            {% endplaceholder %}
+                        </div>
+                        <div class="flip-card-back p-5">
+                            {% placeholder card_3_back or %}
+                                <h2>Správa systému</h2>
+                                <p class="p-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque eaque assumenda perferendis ullam nesciunt.</p>
+                            {% endplaceholder %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</html>

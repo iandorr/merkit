@@ -1,0 +1,60 @@
+{% load cms_tags %}
+{% load static %}
+<html>
+    <body onload="count_checkboxes()">
+        <section class="bg-light p-5 text-center text-dark bg_img" id="services">
+            <div class="container h3_heading_about">
+                <h3>{{ instance.title }}</h3>
+            </div>
+            {% if request.toolbar.edit_mode_active %}
+                <form method="POST">
+                    <div class="row">                
+                        {% csrf_token %}
+                        {% for plugin in instance_plugins %}
+                            <div class="col-3 service_checkbox">
+                                <div class="service_checkbox_count">
+                                    <label class="form-check-label" for={{ plugin.name }}>
+                                        {{ plugin.name }}
+                                    </label>
+                                    {% if plugin.featured %}
+                                        <input class="form-check-input service_plugin_checkbox" name="plugin_select" type="checkbox" onchange="count_checkboxes()" value={{ plugin.pk }} id={{ plugin.name }} checked>
+                                    {% else %}
+                                        <input class="form-check-input service_plugin_checkbox" name="plugin_select" type="checkbox" onchange="count_checkboxes()" value={{ plugin.pk }} id={{ plugin.name }}>
+                                    {% endif %}
+                                    
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <p class="checkbox_warning">*Vybrat lze pouze 3 možnosti.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" id="service_checkbox_button" class="fw-bold fs-3 btn btn-primary my-5 width-30 py-2">Uložit</button>
+                        </div>
+                    </div>
+                </form>
+            {% endif %}
+            <div class="container">
+                <div class="d-lg-flex flip-card-container">
+                    <!-- {% for plugin in instance.child_plugin_instances %}
+                        {% if plugin.featured %}
+                            {% render_plugin plugin %}
+                        {% endif %}
+                    {% endfor %} -->
+                    {% for plugin in rendered_plugins %}
+                        {% render_plugin plugin %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% for detail in rendered_details %}
+            {% render_plugin detail %}
+        {% endfor %}
+
+        <script src="{% static "js/plugin_script.js" %}"></script>
+    </body>
+</html>

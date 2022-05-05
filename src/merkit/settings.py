@@ -29,12 +29,13 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = strtobool(config('DEBUG'))
-    
+
+
 if DEBUG:
     ALLOWED_HOSTS = []
 
 else:
-    ALLOWED_HOSTS = ['']        # IP of the virtual machine
+    ALLOWED_HOSTS = ['127.0.0.1','localhost','10.222.233.69']
 
 
 # Application definition
@@ -99,6 +100,7 @@ STATIC_ROOT = os.path.join(DATA_DIR, 'staticfiles')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'merkit', 'static'),
+    os.path.join(BASE_DIR, 'plugins_app', 'static'),
 )
 
 SITE_ID = 1
@@ -107,7 +109,7 @@ SITE_ID = 1
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'merkit', 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'merkit', 'templates'),os.path.join(BASE_DIR, 'plugins_app', 'templates'),],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -190,9 +192,10 @@ INSTALLED_APPS = [
     'djangocms_video',
     'dynamic_preferences',
     'captcha',
+    'tinymce',
 
     'merkit',
-    'contact_form',
+    'plugins_app',
 ]
 
 LANGUAGES = (
@@ -221,6 +224,7 @@ CMS_LANGUAGES = {
 CMS_TEMPLATES = (
     ## Customize this
     ('index.html',"Index"),
+    ('base.html',"Base"),
 )
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
@@ -255,6 +259,7 @@ THUMBNAIL_PROCESSORS = (
 
 DJANGOCMS_STYLE_TAGS = ['div', 'article', 'section', 'header', 'footer',
                         'h1', 'h2', 'h3', 'h4', 'h5', 'h6','ul','li']
+
 
 
 # EMAIL

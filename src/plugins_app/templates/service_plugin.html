@@ -1,0 +1,20 @@
+{% load cms_tags %}
+{% load static %}
+<html>
+
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <img class="img-fluid" src="{{ MEDIA_URL }}{{ instance.image}}" alt="{% static "img/pictograms/system_narrow.png" %}">
+                <h2>{{instance.title}}</h2>
+            </div>
+            <div class="flip-card-back p-5">
+                {% placeholder card_1_back or %}
+                    <h2>{{instance.back_title}}</h2>
+                    <p class="p-5">{{instance.back_text}}</p>
+                {% endplaceholder %}
+            </div>
+        </div>
+    </div>
+
+</html>

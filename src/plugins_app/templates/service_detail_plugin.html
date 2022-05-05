@@ -1,0 +1,32 @@
+{% load cms_tags %}
+{% load static %}
+<html>
+
+    <section id="products" class="p-5 text-center text-lg-start text-dark bg_img">
+        <div class="container h3_heading">
+            <h3>{{instance.title}}</h3>
+        </div>
+        <div class="container">
+            <div class="d-lg-flex">
+                <div class="pe-lg-5 service_detail_text">                   
+                    <p>{{instance.text}}</p>
+                    <p>
+                        {% autoescape off %}
+                            {{instance.references}}
+                        {% endautoescape %}
+                    </p>
+                </div>
+                <div class="service_detail_images">
+                    <div>
+                        <img class="img-fluid" src="{{ MEDIA_URL }}{{ instance.image1}}" alt="{% static "img/placeholders/promo1.jpg" %}" width="100%">
+                    </div>
+                    <div class="pt-5">
+                        <img class="img-fluid" src="{{ MEDIA_URL }}{{ instance.image2}}" alt="{% static "img/placeholders/promo2.jpg" %}" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</html>

@@ -324,6 +324,9 @@ input {
   }
 }
 
+/* IMPORTANT */
+/* ########## FIXES AFTER THE FRONTENDER BY DEFINITELY NOT A FRONTENDER ################################## */
+
 
 /* This had to be added, otherwise when shrunk the site is static and can't scroll down/up */
 @media all and (max-width: 559px){
@@ -335,4 +338,19 @@ input {
 .captcha{
   width: 304px;
   margin: auto;
+}
+
+input[type=checkbox] {
+  vertical-align: middle;
+  position: relative;
+  bottom: 1px;
+}
+
+label{
+  display: block;
+}
+
+.service_checkbox{
+  border-bottom: 1px solid rgba(136, 128, 128,0.1);
+  padding: 20px;
 }

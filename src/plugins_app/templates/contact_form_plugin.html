@@ -1,0 +1,92 @@
+{% load cms_tags menu_tags sekizai_tags %}
+{% load static %}
+<html>
+    <section id="contact" class="d-lg-flex align-items-center p-5 text-center text-md-start text-dark bg_img">
+        <div class="container">
+            <div class="d-lg-flex align-items-center justify-content-between">
+                <div class="h3_heading me-lg-5 mb-5 mb-lg-0">
+                    <h3>{{ instance.title }}</h3>
+                    <p>{{ instance.text }}</p>
+                </div>
+                <div class="flex-fill ps-lg-5 ms-lg-5">
+                    {% if form %}
+                        <form class="contact-form needs-validation" id="form" novalidate action="#contacts" name="contact_form" method="POST">
+                            {% csrf_token %}
+                            <div class="">
+                                <div class="mb-3">
+                                    <label class="form-label mail" for="mail">{{ instance.email_label }}</label>
+                                    {{ form.email }}
+                                    <span class="error"></span>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="first-name">{{ instance.name_label }}</label>
+                                        {{ form.first_name }}
+                                        <span class="error"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="last-name">{{ instance.surname_label }}</label>
+                                        {{ form.last_name }}
+                                        <span class="error"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="countrycode">{{ instance.phone_label }}</label>
+                                        <label class="form-label" for="phone-number"></label>                                    
+                                        <div class="input-group">
+                                                {{ form.country_code }}
+                                                {{ form.phone_number }}
+                                                <span id="countrycode-error" class=""></span>
+                                                <span id="phone-number-error" class=""></span>   
+                                        </div>                                   
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <span id="cc" class="valid-feedback error"></span>
+                                </div>
+                                <div>
+                                    <span id="pn" class="valid-feedback error"></span>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="mb-3">
+                                    <label class="form-label" for="subject">{{ instance.subject_label }}</label>
+                                    {{ form.subject }}
+                                    <span class="error"></span>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="mb-3">
+                                    <label class="form-label" for="message">{{ instance.message_label }}</label>
+                                    {{ form.text }}
+                                    <span class="error"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3 captcha">
+                                {{ form.captcha }}
+                            </div>
+                            <div class="mb-3">
+                                <button class="fw-bold fs-3 btn btn-primary my-5 width-100 py-2" id="form_submit_button" name="contact_submit" disabled>Odeslat</button>
+                            </div>
+                            <div>
+                                <p class="m-0 fs-5">
+                                    {{ instance.confirmation }}
+                                </p>
+                            </div>
+                        </form>
+                    {% else %}
+                        <!-- TODO: Say smt like "thanks, we will be in touch" or whatever -->
+                        <h1>Thanks</h1>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+</html>
