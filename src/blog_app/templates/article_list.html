@@ -1,0 +1,17 @@
+{% extends 'article_template.html' %}
+
+{% block content %}
+
+<h1> THIS IS LIST VIEW <h1>
+
+<div>
+    <ul>
+        {% for article in object_list %}
+            <li>
+                <a href="{{ article.absolute_url }}">{{ article.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

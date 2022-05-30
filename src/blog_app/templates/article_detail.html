@@ -1,0 +1,15 @@
+{% extends 'article_template.html' %}
+
+{% load cms_tags menu_tags sekizai_tags %}
+
+{% block content %}
+<div>
+    <div>
+        <h1>{% render_model article "title" %}</h1>
+    </div>
+    <div>
+        <p>{% render_placeholder article.text %}</p>
+    </div>
+</div>
+
+{% endblock %}

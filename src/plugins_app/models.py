@@ -7,17 +7,22 @@ from cms.models.fields import PlaceholderField
 
 from tinymce.models import HTMLField
 
+from cms.models.pagemodel import Page
+
 # Create your models here.
 
 class WelcomeModel(CMSPlugin):
     welcome_text = models.CharField(max_length=255,default="Vítejte na Merkit",help_text="Hlavní uvítací text.")
+    link_id = models.CharField(default="welcome_section",max_length=64,help_text="ID sekce pro linkovací důvody.")
 
 class MainInfoModel(CMSPlugin):
     title = models.CharField(max_length=64,default="Hlavní Informace",help_text="Titulek hlavní info sekce.")
     text = models.TextField(help_text="Text zobrazený v hlavní info sekce.")
+    link_id = models.CharField(default="main_info_section",max_length=64,help_text="ID sekce pro linkovací důvody.")
 
 class ServicesModel(CMSPlugin):
     title = models.CharField(max_length=64,default="Služby",help_text="Titulek služeb.")
+    link_id = models.CharField(default="services_section",max_length=64,help_text="ID sekce pro linkovací důvody.")
 
 class ServiceModel(CMSPlugin):
 
@@ -43,6 +48,11 @@ class ServiceDetailModel(CMSPlugin):
 
     references = HTMLField()
 
+class LinkModel(CMSPlugin):
+
+    title = models.CharField(max_length=64,help_text="Titulek linku.")
+    href = models.CharField(max_length=64,help_text="ID sekce na kterou link odkazuje, ID začínají #, url /.")
+
 
 class ContactFormModel(CMSPlugin):
     title = models.CharField(max_length=64,default="Kontakt",help_text="Titulek formuláře kontaktu.")
@@ -56,3 +66,5 @@ class ContactFormModel(CMSPlugin):
     message_label = models.CharField(max_length=32,default="Zpráva",help_text="Popis pole pro zadání těla zprávy.")
 
     confirmation = models.TextField(help_text="Souhlas s podmínkami.",blank=True)
+
+    link_id = models.CharField(default="contact_section",max_length=64,help_text="ID sekce pro linkovací důvody.")

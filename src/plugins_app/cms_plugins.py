@@ -3,8 +3,26 @@ from cms.plugin_pool import plugin_pool
 from cms.models.pluginmodel import CMSPlugin
 from django.utils.translation import gettext_lazy as _
 
-from plugins_app.models import WelcomeModel,MainInfoModel,ContactFormModel, ServicesModel, ServiceModel, ServiceDetailModel
+from cms.models.pagemodel import Page
+
+from plugins_app.models import WelcomeModel,MainInfoModel,ContactFormModel, ServicesModel, ServiceModel, ServiceDetailModel, LinkModel
 from plugins_app.forms import SubmitContactForm, ServiceForm
+
+
+@plugin_pool.register_plugin
+class NavLinkPlugin(CMSPluginBase):
+    render_template = "navlink_plugin.html"
+    cache = False
+    allow_children = True
+    child_classes = ['LinkPlugin']
+
+@plugin_pool.register_plugin
+class LinkPlugin(CMSPluginBase):
+    model = LinkModel
+    render_template = "link_plugin.html"
+    cache = False
+    require_parent = True
+    parent_classes = ['NavLinkPlugin']
 
 
 @plugin_pool.register_plugin
@@ -66,6 +84,9 @@ class ServicesPlugin(CMSPluginBase):
 
     def render(self,context,instance,placeholder):
 
+        # pages = Page.objects.public()
+        # for page in pages:
+        #     print(page.get_public_url())
 
         request = context['request']
         if request.method == "POST":

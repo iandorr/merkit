@@ -101,6 +101,7 @@ STATIC_ROOT = os.path.join(DATA_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'merkit', 'static'),
     os.path.join(BASE_DIR, 'plugins_app', 'static'),
+    os.path.join(BASE_DIR, 'blog_app', 'static'),
 )
 
 SITE_ID = 1
@@ -109,7 +110,11 @@ SITE_ID = 1
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'merkit', 'templates'),os.path.join(BASE_DIR, 'plugins_app', 'templates'),],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'merkit', 'templates'),
+            os.path.join(BASE_DIR, 'plugins_app', 'templates'),
+            os.path.join(BASE_DIR, 'blog_app', 'templates'),
+        ],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -196,6 +201,7 @@ INSTALLED_APPS = [
 
     'merkit',
     'plugins_app',
+    'blog_app',
 ]
 
 LANGUAGES = (
@@ -225,6 +231,7 @@ CMS_TEMPLATES = (
     ## Customize this
     ('index.html',"Index"),
     ('base.html',"Base"),
+    ('blog_base.html',"Blog Base"),
 )
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
