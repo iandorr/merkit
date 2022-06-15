@@ -36,6 +36,7 @@ if DEBUG:
 
 else:
     ALLOWED_HOSTS = ['127.0.0.1','localhost','10.222.233.69']
+    CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
 
 
 # Application definition
@@ -206,7 +207,9 @@ INSTALLED_APPS = [
 
 LANGUAGES = (
     ## Customize this
-    ('cs', gettext('cs')),
+    ('cs', gettext('Czech')),
+    ('en', gettext('English')),
+    ('sk', gettext('Slovak')),
 )
 
 CMS_LANGUAGES = {
@@ -214,7 +217,21 @@ CMS_LANGUAGES = {
     1: [
         {
             'code': 'cs',
-            'name': gettext('cs'),
+            'name': gettext('Czech'),
+            'redirect_on_fallback': True,
+            'public': True,
+            'hide_untranslated': False,
+        },
+        {
+            'code': 'en',
+            'name': gettext('English'),
+            'redirect_on_fallback': True,
+            'public': True,
+            'hide_untranslated': False,
+        },
+        {
+            'code': 'sk',
+            'name': gettext('Slovak'),
             'redirect_on_fallback': True,
             'public': True,
             'hide_untranslated': False,

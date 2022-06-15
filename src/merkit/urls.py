@@ -9,10 +9,15 @@ from django.views.generic.base import RedirectView
 
 admin.autodiscover()
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path("sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
     path(r'^tinymce/',include('tinymce.urls')),
-]
+)
+
+# urlpatterns = [
+#     path("sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
+#     path(r'^tinymce/',include('tinymce.urls')),
+# ]
 
 urlpatterns += i18n_patterns(path("admin/", admin.site.urls), path("", include("cms.urls")))
 
