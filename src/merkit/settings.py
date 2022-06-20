@@ -35,7 +35,7 @@ if DEBUG:
     ALLOWED_HOSTS = []
 
 else:
-    ALLOWED_HOSTS = ['127.0.0.1','localhost','10.222.233.69']
+    ALLOWED_HOSTS = ['10.222.233.69','159.69.61.168','127.0.0.1']
     CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
 
 
@@ -255,7 +255,7 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = True
 
 CMS_PERMISSION = True

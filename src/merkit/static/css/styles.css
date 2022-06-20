@@ -327,17 +327,14 @@ input {
 /* IMPORTANT */
 /* ########## FIXES AFTER THE FRONTENDER BY DEFINITELY NOT A FRONTENDER ################################## */
 
-
-/* This had to be added, otherwise when shrunk the site is static and can't scroll down/up */
-@media all and (max-width: 559px){
-  body{
-    position: relative;
-  }
+.captcha{
+  max-width: 304px;
+  text-align: center;
+  margin: auto;
 }
 
-.captcha{
-  width: 304px;
-  margin: auto;
+.g-recaptcha{
+  display: inline-block;
 }
 
 input[type=checkbox] {
@@ -355,8 +352,12 @@ label{
   padding: 20px;
 }
 
-/*
-.navbar{
-  top: 30px;
+/* This had to be added, otherwise when shrunk the site is static and can't scroll down/up */
+@media all and (max-width: 559px){
+  body{
+    position: relative;
+  }
+  .g-recaptcha{
+    transform: scale(0.66);
+  }
 }
-*/
