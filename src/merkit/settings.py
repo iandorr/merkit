@@ -28,14 +28,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = strtobool(config('DEBUG'))
-
+DEBUG = strtobool(config('DEBUG')) 
 
 if DEBUG:
     ALLOWED_HOSTS = []
 
 else:
-    ALLOWED_HOSTS = ['10.222.233.69','159.69.61.168','127.0.0.1']
+    ALLOWED_HOSTS = ['10.222.233.69','159.69.61.168','127.0.0.1'] 
     CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
 
 
@@ -255,8 +254,13 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-CSRF_COOKIE_SECURE = False
-SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# TODO in prod set this to True
+SESSION_COOKIE_SECURE = False
+# TODO set domain name
+#SESSION_COOKIE_DOMAIN = '10.222.233.69'
+#SESSION_COOKIE_NAME = 'session_id'
 
 CMS_PERMISSION = True
 
