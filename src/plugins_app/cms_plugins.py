@@ -2,27 +2,62 @@ from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from cms.models.pluginmodel import CMSPlugin
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import get_language
 
 from cms.models.pagemodel import Page
 
-from plugins_app.models import WelcomeModel,MainInfoModel,ContactFormModel, ServicesModel, ServiceModel, ServiceDetailModel, LinkModel
-from plugins_app.forms import SubmitContactForm, ServiceForm
-
+from plugins_app.models import WelcomeModel,MainInfoModel,ContactFormModel, ServicesModel, ServiceModel, ServiceDetailModel, LinkManager
+from plugins_app.forms import ContactPluginForm, SubmitContactForm, ServiceForm
 
 @plugin_pool.register_plugin
 class NavLinkPlugin(CMSPluginBase):
-    render_template = "navlink_plugin.html"
+    render_template = "navbar_plugin.html"
     cache = False
-    allow_children = True
-    child_classes = ['LinkPlugin']
 
-@plugin_pool.register_plugin
-class LinkPlugin(CMSPluginBase):
-    model = LinkModel
-    render_template = "link_plugin.html"
-    cache = False
-    require_parent = True
-    parent_classes = ['NavLinkPlugin']
+    def render(self,context,instance,placeholder):
+
+        unsorted_links = []
+
+        page_id = instance.placeholder.page.id
+        page = Page.objects.get(id = page_id)
+
+        placeholders = page.placeholders.all()
+
+        for placeholder in placeholders:
+            if placeholder.slot == 'content':
+                break
+
+        plugins = placeholder.get_plugins(language=get_language())
+
+        link_manager = LinkManager.objects.all()[0]
+        for f in link_manager._meta.get_fields():
+            if f.one_to_many:
+                items = f.related_model.objects.all()
+                for item in items:
+                    for plugin in plugins:
+                        if item.id == plugin.id:
+                            if item.show_link:
+                                unsorted_links.append(item)
+                            break
+
+        links = sorted(unsorted_links,key=lambda t: t.get_position_in_placeholder())
+
+        current_draft = page.publisher_is_draft
+
+        pages = Page.objects.exclude(id=page_id)
+        page_links = []
+        for p in pages:
+            if (p.in_navigation and p.publisher_is_draft == current_draft):
+                if (get_language() in p.get_languages()):
+                    page_links.append(p)
+
+        context.update({
+            'links': links,
+            'page_links':page_links
+        })
+        context['instance'] = instance
+        context['placeholder'] = placeholder
+        return context
 
 
 @plugin_pool.register_plugin
@@ -40,6 +75,7 @@ class MainInfoPlugin(CMSPluginBase):
 @plugin_pool.register_plugin
 class ContactFormPlugin(CMSPluginBase):
     model = ContactFormModel
+    form = ContactPluginForm
     render_template = "contact_form_plugin.html"
     cache = False
 
@@ -49,9 +85,9 @@ class ContactFormPlugin(CMSPluginBase):
 
         if request.method == "POST":
             if 'contact_submit' in request.POST:
-                form = SubmitContactForm(request.POST)
+                submit_form = SubmitContactForm(request.POST)
                 # TODO: send mail using the custom server ... smt like send_mail(), mail server not set up
-                if form.is_valid():
+                if submit_form.is_valid():
                     print("Human")
                 else:
                     print("Bot")
@@ -64,9 +100,9 @@ class ContactFormPlugin(CMSPluginBase):
                 # context['placeholder'] = placeholder
                 # return context
 
-        form = SubmitContactForm()
+        submit_form = SubmitContactForm()
         context.update({
-            'form': form
+            'form': submit_form
         })
 
         context['instance'] = instance

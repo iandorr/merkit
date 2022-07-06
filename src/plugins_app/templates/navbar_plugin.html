@@ -1,0 +1,14 @@
+{% load cms_tags menu_tags sekizai_tags %}
+{% load static %}
+<html>
+    {% for page_link in page_links %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{page_link.get_absolute_url}}">{{page_link.get_page_title}}</a>
+        </li>
+    {% endfor %}
+    {% for link in links %}
+        <li class="nav-item">
+            <a class="nav-link" href="#{{link.link_href}}">{{link.link_title}}</a>
+        </li>
+    {% endfor %}
+</html>

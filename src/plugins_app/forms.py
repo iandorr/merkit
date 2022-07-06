@@ -1,8 +1,9 @@
 from django import forms
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV2Checkbox
+from django.core.validators import EMPTY_VALUES
 
-from plugins_app.models import ServiceModel
+from plugins_app.models import ContactFormModel, ServiceModel
 
 class SubmitContactForm(forms.Form):
 
@@ -25,6 +26,25 @@ class SubmitContactForm(forms.Form):
                 visible.field.widget.attrs['class'] = 'input-width-max form-control width-30 me-1'
             else:
                 visible.field.widget.attrs['class'] = 'form-control'
+
+class ContactPluginForm(forms.ModelForm):
+    class Meta:
+        model = ContactFormModel
+        fields = '__all__'
+
+    def clean(self):
+        show_link = self.cleaned_data.get('show_link', False)
+        if show_link:
+            # validate the activity name
+            link_href = self.cleaned_data.get('link_href', None)
+            link_title = self.cleaned_data.get('link_title', None)
+            if link_href in EMPTY_VALUES:
+                self._errors['link_href'] = self.error_class([
+                    'Link href nesmí být prázdný, když je show_link True'])
+            if link_title in EMPTY_VALUES:
+                self._errors['link_title'] = self.error_class([
+                    'Link title nesmí být prázdný, když je show_link True'])
+        return self.cleaned_data
 
 
 class ServiceForm(forms.ModelForm):

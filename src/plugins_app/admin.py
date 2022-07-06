@@ -1,7 +1,7 @@
 from django.contrib import admin
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 
-from plugins_app.models import WelcomeModel,MainInfoModel,ContactFormModel, ServicesModel, ServiceModel, ServiceDetailModel
+from plugins_app.models import WelcomeModel,MainInfoModel,ContactFormModel, ServicesModel, ServiceModel, ServiceDetailModel, LinkManager
 
 # Register your models here.
 
@@ -18,3 +18,4 @@ admin.site.register(ServicesModel,ServicesAdmin)
 admin.site.register(ServiceModel)
 admin.site.register(ContactFormModel)
 admin.site.register(ServiceDetailModel,ServicesDetailAdmin)
+admin.site.register(LinkManager)
