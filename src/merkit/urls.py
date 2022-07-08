@@ -11,7 +11,7 @@ admin.autodiscover()
 
 urlpatterns = i18n_patterns(
     path("sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
-    path(r'^tinymce/',include('tinymce.urls')),
+    path('tinymce/',include('tinymce.urls')),
 )
 
 # urlpatterns = [

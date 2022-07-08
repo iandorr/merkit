@@ -1,3 +1,4 @@
+from distutils.debug import DEBUG
 import os  # isort:skip
 gettext = lambda s: s
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -28,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = strtobool(config('DEBUG')) 
+DEBUG = strtobool(config('DEBUG'))
 
 if DEBUG:
     ALLOWED_HOSTS = []
@@ -250,13 +251,13 @@ CMS_TEMPLATES = (
     ('blog_base.html',"Blog Base"),
 )
 
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+X_FRAME_OPTIONS = 'SAMEORIGIN'      # can't be denied because of Django-CMS
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CSRF_COOKIE_SECURE = True
 
-# TODO in prod set this to True
+# TODO in prod set this to True ... this False is due to the fact, that we work with HTTP and not HTTPS ... need to reroute that
 SESSION_COOKIE_SECURE = False
 # TODO set domain name
 #SESSION_COOKIE_DOMAIN = '10.222.233.69'
