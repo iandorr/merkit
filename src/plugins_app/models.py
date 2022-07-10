@@ -21,7 +21,7 @@ class DefaultPluginModel(CMSPlugin):
     show_link = models.BooleanField(default=False)
     link_title = models.CharField(max_length=64)
     link_href = models.CharField(max_length=64)
-    link = models.ForeignKey(LinkManager,on_delete=models.CASCADE)
+    link_manager = models.ForeignKey(LinkManager,null=True,on_delete=models.SET_NULL)
 
     class Meta:
         abstract = True

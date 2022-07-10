@@ -1,6 +1,5 @@
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from cms.models.pluginmodel import CMSPlugin
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import get_language
 
@@ -29,7 +28,13 @@ class NavLinkPlugin(CMSPluginBase):
 
         plugins = placeholder.get_plugins(language=get_language())
 
-        link_manager = LinkManager.objects.all()[0]
+        link_manager = LinkManager.objects.first()
+
+        # in case none exist
+        if link_manager is None:
+            link_manager = LinkManager()
+            link_manager.save()
+        
         for f in link_manager._meta.get_fields():
             if f.one_to_many:
                 items = f.related_model.objects.all()
