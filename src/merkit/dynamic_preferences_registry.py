@@ -14,13 +14,3 @@ class EmailHostUser(StringPreference):
     required = True
 
     verbose_name = 'Host Email'
-
-@global_preferences_registry.register
-class EmailHostPassword(StringPreference):
-
-    section = general
-    name = 'EMAIL_HOST_PASSWORD'
-    default = 'None'
-    required = True
-
-    verbose_name = 'Host Password'

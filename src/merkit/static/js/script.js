@@ -443,9 +443,3 @@ window.addEventListener("load", function () {
     root.removeAttribute("style");
   }, 2);
 });
-
-//function Validate(){
-//  var f = document.getElementById("mail");
-//  console.log(f)
-//  console.log("HELLO")
-//}

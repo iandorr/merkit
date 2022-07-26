@@ -7,10 +7,26 @@
                 <div class="h3_heading me-lg-5 mb-5 mb-lg-0">
                     <h3>{{ instance.title }}</h3>
                     <p>{{ instance.text }}</p>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == 'success' %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{message}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% elif message.tags == 'error' %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{message}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
                 <div class="flex-fill ps-lg-5 ms-lg-5">
                     {% if form %}
-                        <form class="contact-form needs-validation" id="form" novalidate action="#contacts" name="contact_form" method="POST">
+                        <form class="contact-form needs-validation" id="form" novalidate action="#{{instance.link_href}}" name="contact_form" method="POST">
                             {% csrf_token %}
                             <div class="">
                                 <div class="mb-3">
@@ -75,7 +91,7 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <button class="fw-bold fs-3 btn btn-primary my-5 width-100 py-2" id="form_submit_button" name="contact_submit" disabled>Odeslat</button>
+                                <button class="fw-bold fs-3 btn btn-primary my-5 width-100 py-2" id="form_submit_button" name="contact_submit" disabled>{{instance.button_text}}</button>
                             </div>
                             <div>
                                 <p class="m-0 fs-5">

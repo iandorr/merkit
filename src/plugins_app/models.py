@@ -71,5 +71,6 @@ class ContactFormModel(DefaultPluginModel):
     phone_label = models.CharField(max_length=32,default="Telefonní číslo",help_text="Popis pole pro zadání telefonního čísla.")
     subject_label = models.CharField(max_length=32,default="Předmět",help_text="Popis pole pro zadání předmětu.")
     message_label = models.CharField(max_length=32,default="Zpráva",help_text="Popis pole pro zadání těla zprávy.")
+    button_text = models.CharField(max_length=32,default="Odeslat",help_text="Text zobrazený na tlačítku odeslání.")
 
     confirmation = models.TextField(help_text="Souhlas s podmínkami.",blank=True)

@@ -2,8 +2,14 @@ from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import get_language
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.conf import settings
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.contrib import messages
 
 from cms.models.pagemodel import Page
+from dynamic_preferences.registries import global_preferences_registry
 
 from plugins_app.models import WelcomeModel,MainInfoModel,ContactFormModel, ServicesModel, ServiceModel, ServiceDetailModel, LinkManager
 from plugins_app.forms import ContactPluginForm, SubmitContactForm, ServiceForm
@@ -91,19 +97,29 @@ class ContactFormPlugin(CMSPluginBase):
         if request.method == "POST":
             if 'contact_submit' in request.POST:
                 submit_form = SubmitContactForm(request.POST)
-                # TODO: send mail using the custom server ... smt like send_mail(), mail server not set up
                 if submit_form.is_valid():
-                    print("Human")
+                    email = submit_form.cleaned_data['email']
+                    first_name = submit_form.cleaned_data['first_name']
+                    last_name = submit_form.cleaned_data['last_name']
+                    country_code = submit_form.cleaned_data['country_code']
+                    phone_number = submit_form.cleaned_data['phone_number']
+                    subject = submit_form.cleaned_data['subject']
+                    text = submit_form.cleaned_data['text']
+
+                    html_string = render_to_string("mail_template.html",{'title':"Email from Merkit",'first_name':first_name,'last_name':last_name,'country_code':country_code,'phone_number':phone_number,'text':text,'email':email})
+                    text_string = strip_tags(html_string)
+
+                    global_preferences = global_preferences_registry.manager()
+                    receive_email = global_preferences['general__EMAIL_HOST_USER']
+
+                    email_class = EmailMultiAlternatives(subject,text_string,settings.EMAIL_HOST_USER,[receive_email])
+                    email_class.send()
+
+                    messages.success(request,("Zpráva úspěšně odeslána!"))
+
                 else:
-                    print("Bot")
 
-                # context.update({
-                #     'form':form
-                # })
-
-                # context['instance'] = instance
-                # context['placeholder'] = placeholder
-                # return context
+                    messages.error(request,("Chyba, zkuste odeslat znovu!"))
 
         submit_form = SubmitContactForm()
         context.update({
@@ -124,10 +140,6 @@ class ServicesPlugin(CMSPluginBase):
     cache = False
 
     def render(self,context,instance,placeholder):
-
-        # pages = Page.objects.public()
-        # for page in pages:
-        #     print(page.get_public_url())
 
         request = context['request']
         if request.method == "POST":
