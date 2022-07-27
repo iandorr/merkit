@@ -31,12 +31,15 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = strtobool(config('DEBUG'))
 
-if DEBUG:
-    ALLOWED_HOSTS = []
+# if DEBUG:
+#     ALLOWED_HOSTS = []
 
-else:
-    ALLOWED_HOSTS = ['10.222.233.69','159.69.61.168','127.0.0.1'] 
-    CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
+# else:
+#     ALLOWED_HOSTS = ['10.222.233.69','159.69.61.168','127.0.0.1'] 
+#     CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
+
+ALLOWED_HOSTS = ['10.222.233.69','159.69.61.168','127.0.0.1','merkit.cz','www.merkit.cz'] 
+CSRF_TRUSTED_ORIGINS = ['http://merkit.*', 'https://merkit.*']
 
 
 # Application definition
