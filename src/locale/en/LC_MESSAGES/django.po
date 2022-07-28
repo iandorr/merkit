@@ -1,0 +1,131 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-28 19:26+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\merkit\settings.py:213 .\merkit\settings.py:223
+msgid "Czech"
+msgstr ""
+
+#: .\merkit\settings.py:214 .\merkit\settings.py:230
+msgid "English"
+msgstr ""
+
+#: .\merkit\settings.py:215 .\merkit\settings.py:237
+msgid "Slovak"
+msgstr ""
+
+#: .\plugins_app\cms_plugins.py:120
+msgid "Message sent successfully!"
+msgstr ""
+
+#: .\plugins_app\cms_plugins.py:124
+msgid "Error, try to send again!"
+msgstr ""
+
+#: .\plugins_app\forms.py:45 .\plugins_app\forms.py:48
+msgid "Link href can't be empty, when show_link is True."
+msgstr ""
+
+#: .\plugins_app\models.py:34
+msgid "Main welcome text."
+msgstr ""
+
+#: .\plugins_app\models.py:37
+msgid "Title of the main info section."
+msgstr ""
+
+#: .\plugins_app\models.py:38
+msgid "Text showcased in the main info section."
+msgstr ""
+
+#: .\plugins_app\models.py:41
+msgid "Title of the services section."
+msgstr ""
+
+#: .\plugins_app\models.py:45
+msgid "Discerning name of the service, must be unique!"
+msgstr ""
+
+#: .\plugins_app\models.py:47
+msgid "Title of the service."
+msgstr ""
+
+#: .\plugins_app\models.py:50
+msgid "Title of the service on the back of the card."
+msgstr ""
+
+#: .\plugins_app\models.py:51
+msgid "Text on the back of the card."
+msgstr ""
+
+#: .\plugins_app\models.py:60
+msgid "Title of the service detail."
+msgstr ""
+
+#: .\plugins_app\models.py:61
+msgid "Text describing the service."
+msgstr ""
+
+#: .\plugins_app\models.py:69
+msgid "Title of the contact form."
+msgstr ""
+
+#: .\plugins_app\models.py:70
+msgid "Text showcased under the title on the contact form."
+msgstr ""
+
+#: .\plugins_app\models.py:72
+msgid "Agree to terms."
+msgstr ""
+
+#: .\plugins_app\templates\contact_form_plugin.html:34
+msgid "Email"
+msgstr ""
+
+#: .\plugins_app\templates\contact_form_plugin.html:42
+msgid "Name"
+msgstr ""
+
+#: .\plugins_app\templates\contact_form_plugin.html:47
+msgid "Surname"
+msgstr ""
+
+#: .\plugins_app\templates\contact_form_plugin.html:56
+msgid "Phone number"
+msgstr ""
+
+#: .\plugins_app\templates\contact_form_plugin.html:77
+msgid "Subject"
+msgstr ""
+
+#: .\plugins_app\templates\contact_form_plugin.html:84
+msgid "Message"
+msgstr ""
+
+#: .\plugins_app\templates\contact_form_plugin.html:95
+msgid "Send"
+msgstr ""
+
+#: .\plugins_app\templates\services_list_plugin.html:32
+msgid "*You can select a maximum of 3 choices."
+msgstr ""
+
+#: .\plugins_app\templates\services_list_plugin.html:37
+msgid "Save"
+msgstr ""

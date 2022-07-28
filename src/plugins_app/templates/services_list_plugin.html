@@ -1,5 +1,6 @@
 {% load cms_tags %}
 {% load static %}
+{% load i18n %}
 <html>
     <body onload="count_checkboxes()">
         <section class="bg-light p-5 text-center text-dark bg_img" id={{ instance.link_href }}>
@@ -28,12 +29,12 @@
                     </div>
                     <div class="row mt-5">
                         <div class="col-12">
-                            <p class="checkbox_warning">*Vybrat lze pouze 3 možnosti.</p>
+                            <p class="checkbox_warning">{% trans "*You can select precisely 3 choices." %}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button type="submit" id="service_checkbox_button" class="fw-bold fs-3 btn btn-primary my-5 width-30 py-2">Uložit</button>
+                            <button type="submit" id="service_checkbox_button" class="fw-bold fs-3 btn btn-primary my-5 width-30 py-2">{% trans "Save" %}</button>
                         </div>
                     </div>
                 </form>

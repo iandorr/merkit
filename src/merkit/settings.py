@@ -256,12 +256,16 @@ CMS_TEMPLATES = (
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'      # can't be denied because of Django-CMS
 
+LOCALE_PATHS =(
+    os.path.join(BASE_DIR,'locale'),
+)
+
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CSRF_COOKIE_SECURE = True
 
 # TODO in prod set this to True ... this False is due to the fact, that we work with HTTP and not HTTPS ... need to reroute that
-SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = True
 # TODO set domain name
 #SESSION_COOKIE_DOMAIN = '10.222.233.69'
 #SESSION_COOKIE_NAME = 'session_id'

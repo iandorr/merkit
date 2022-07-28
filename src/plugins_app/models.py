@@ -9,6 +9,10 @@ from tinymce.models import HTMLField
 
 from cms.models.pagemodel import Page
 
+from django.utils.translation import gettext_lazy as _
+
+
+
 # Create your models here.
 
 class LinkManager(models.Model):
@@ -27,24 +31,24 @@ class DefaultPluginModel(CMSPlugin):
         abstract = True
 
 class WelcomeModel(DefaultPluginModel):
-    welcome_text = models.CharField(max_length=255,default="Vítejte na Merkit",help_text="Hlavní uvítací text.")
+    welcome_text = models.CharField(max_length=255,default="Vítejte na Merkit",help_text=_("Main welcome text."))
 
 class MainInfoModel(DefaultPluginModel):
-    title = models.CharField(max_length=64,default="Hlavní Informace",help_text="Titulek hlavní info sekce.")
-    text = models.TextField(help_text="Text zobrazený v hlavní info sekce.")
+    title = models.CharField(max_length=64,default="Hlavní Informace",help_text=_("Title of the main info section."))
+    text = models.TextField(help_text=_("Text showcased in the main info section."))
 
 class ServicesModel(DefaultPluginModel):
-    title = models.CharField(max_length=64,default="Služby",help_text="Titulek služeb.")
+    title = models.CharField(max_length=64,default="Služby",help_text=_("Title of the services section."))
 
 class ServiceModel(CMSPlugin):
 
-    name = models.CharField(max_length=64,help_text="Rozeznávací jméno služby, musí být unikátní.")
+    name = models.CharField(max_length=64,help_text=_("Discerning name of the service, must be unique!"))
 
-    title = models.CharField(max_length=64,help_text="Titul služby.")
+    title = models.CharField(max_length=64,help_text=_("Title of the service."))
     #image = FilerImageField()
     image = models.ImageField(upload_to='images/')
-    back_title = models.CharField(max_length=64,help_text="Titul služby na zadní straně karty.")
-    back_text = models.TextField(help_text="Text na zadní straně karty.")
+    back_title = models.CharField(max_length=64,help_text=_("Title of the service on the back of the card."))
+    back_text = models.TextField(help_text=_("Text on the back of the card."))
 
     featured = models.BooleanField(default=False)
 
@@ -53,8 +57,8 @@ class ServiceModel(CMSPlugin):
 
 class ServiceDetailModel(CMSPlugin):
 
-    title = models.CharField(max_length=64,help_text="Titulek detailu služeb.")
-    text = models.TextField(help_text="Text popisující službu.")
+    title = models.CharField(max_length=64,help_text=_("Title of the service detail."))
+    text = models.TextField(help_text=_("Text describing the service."))
     image1 = models.ImageField(upload_to='images/')
     image2 = models.ImageField(upload_to='images/')
 
@@ -62,15 +66,7 @@ class ServiceDetailModel(CMSPlugin):
 
 
 class ContactFormModel(DefaultPluginModel):
-    title = models.CharField(max_length=64,default="Kontakt",help_text="Titulek formuláře kontaktu.")
-    text = models.TextField(help_text="Text zobrazený pod titulkem.",blank=True)
+    title = models.CharField(max_length=64,default="Kontakt",help_text=_("Title of the contact form."))
+    text = models.TextField(help_text=_("Text showcased under the title on the contact form."),blank=True)
 
-    email_label = models.CharField(max_length=32,default="Email",help_text="Popis pole pro zadání emailu.")
-    name_label = models.CharField(max_length=32,default="Jméno",help_text="Popis pole pro zadání křestního jména.")
-    surname_label = models.CharField(max_length=32,default="Příjmení",help_text="Popis pole pro zadání příjmení.")
-    phone_label = models.CharField(max_length=32,default="Telefonní číslo",help_text="Popis pole pro zadání telefonního čísla.")
-    subject_label = models.CharField(max_length=32,default="Předmět",help_text="Popis pole pro zadání předmětu.")
-    message_label = models.CharField(max_length=32,default="Zpráva",help_text="Popis pole pro zadání těla zprávy.")
-    button_text = models.CharField(max_length=32,default="Odeslat",help_text="Text zobrazený na tlačítku odeslání.")
-
-    confirmation = models.TextField(help_text="Souhlas s podmínkami.",blank=True)
+    confirmation = models.TextField(help_text=_("Agreement with the terms."),blank=True)

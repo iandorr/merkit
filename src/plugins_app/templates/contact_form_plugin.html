@@ -1,5 +1,6 @@
 {% load cms_tags menu_tags sekizai_tags %}
 {% load static %}
+{% load i18n %}
 <html>
     <section id={{instance.link_href}} class="d-lg-flex align-items-center p-5 text-center text-md-start text-dark bg_img">
         <div class="container">
@@ -30,7 +31,7 @@
                             {% csrf_token %}
                             <div class="">
                                 <div class="mb-3">
-                                    <label class="form-label mail" for="mail">{{ instance.email_label }}</label>
+                                    <label class="form-label mail" for="mail">{% trans "Email" %}</label>
                                     {{ form.email }}
                                     <span class="error"></span>
                                 </div>
@@ -38,12 +39,12 @@
                             <div class="">
                                 <div class="">
                                     <div class="mb-3">
-                                        <label class="form-label" for="first-name">{{ instance.name_label }}</label>
+                                        <label class="form-label" for="first-name">{% trans "Name" %}</label>
                                         {{ form.first_name }}
                                         <span class="error"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label" for="last-name">{{ instance.surname_label }}</label>
+                                        <label class="form-label" for="last-name">{% trans "Surname" %}</label>
                                         {{ form.last_name }}
                                         <span class="error"></span>
                                     </div>
@@ -52,7 +53,7 @@
                             <div class="">
                                 <div class="">
                                     <div class="mb-3">
-                                        <label class="form-label" for="countrycode">{{ instance.phone_label }}</label>
+                                        <label class="form-label" for="countrycode">{% trans "Phone number" %}</label>
                                         <label class="form-label" for="phone-number"></label>                                    
                                         <div class="input-group">
                                                 {{ form.country_code }}
@@ -73,14 +74,14 @@
                             </div>
                             <div class="">
                                 <div class="mb-3">
-                                    <label class="form-label" for="subject">{{ instance.subject_label }}</label>
+                                    <label class="form-label" for="subject">{% trans "Subject" %}</label>
                                     {{ form.subject }}
                                     <span class="error"></span>
                                 </div>
                             </div>
                             <div class="">
                                 <div class="mb-3">
-                                    <label class="form-label" for="message">{{ instance.message_label }}</label>
+                                    <label class="form-label" for="message">{% trans "Message" %}</label>
                                     {{ form.text }}
                                     <span class="error"></span>
                                 </div>
@@ -91,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <button class="fw-bold fs-3 btn btn-primary my-5 width-100 py-2" id="form_submit_button" name="contact_submit" disabled>{{instance.button_text}}</button>
+                                <button class="fw-bold fs-3 btn btn-primary my-5 width-100 py-2" id="form_submit_button" name="contact_submit" disabled>{% trans "Send" %}</button>
                             </div>
                             <div>
                                 <p class="m-0 fs-5">
@@ -99,9 +100,6 @@
                                 </p>
                             </div>
                         </form>
-                    {% else %}
-                        <!-- TODO: Say smt like "thanks, we will be in touch" or whatever -->
-                        <h1>Thanks</h1>
                     {% endif %}
                 </div>
             </div>

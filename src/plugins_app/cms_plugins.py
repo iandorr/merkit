@@ -7,6 +7,8 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
+
 
 from cms.models.pagemodel import Page
 from dynamic_preferences.registries import global_preferences_registry
@@ -115,11 +117,11 @@ class ContactFormPlugin(CMSPluginBase):
                     email_class = EmailMultiAlternatives(subject,text_string,settings.EMAIL_HOST_USER,[receive_email])
                     email_class.send()
 
-                    messages.success(request,("Zpráva úspěšně odeslána!"))
+                    messages.success(request,(_("Message sent successfully!")))
 
                 else:
 
-                    messages.error(request,("Chyba, zkuste odeslat znovu!"))
+                    messages.error(request,(_("Error, try to send again!")))
 
         submit_form = SubmitContactForm()
         context.update({

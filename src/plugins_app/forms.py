@@ -2,6 +2,8 @@ from django import forms
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV2Checkbox
 from django.core.validators import EMPTY_VALUES
+from django.utils.translation import gettext_lazy as _
+
 
 from plugins_app.models import ContactFormModel, ServiceModel
 
@@ -40,10 +42,10 @@ class ContactPluginForm(forms.ModelForm):
             link_title = self.cleaned_data.get('link_title', None)
             if link_href in EMPTY_VALUES:
                 self._errors['link_href'] = self.error_class([
-                    'Link href nesmí být prázdný, když je show_link True'])
+                    _("Link href can't be empty, when show_link is True.")])
             if link_title in EMPTY_VALUES:
                 self._errors['link_title'] = self.error_class([
-                    'Link title nesmí být prázdný, když je show_link True'])
+                    _("Link href can't be empty, when show_link is True.")])
         return self.cleaned_data
 
 
