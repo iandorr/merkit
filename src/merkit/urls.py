@@ -13,16 +13,9 @@ urlpatterns = i18n_patterns(
     path("sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
     path('tinymce/',include('tinymce.urls')),
 )
-
-# urlpatterns = [
-#     path("sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
-#     path(r'^tinymce/',include('tinymce.urls')),
-# ]
-
 urlpatterns += i18n_patterns(path("admin/", admin.site.urls), path("", include("cms.urls")))
 
-# This is only needed when using runserver.
-
+# This is only needed when using runserver. We manage it via nginx
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

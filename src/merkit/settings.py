@@ -31,26 +31,13 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = strtobool(config('DEBUG'))
 
-# if DEBUG:
-#     ALLOWED_HOSTS = []
 
-# else:
-#     ALLOWED_HOSTS = ['10.222.233.69','159.69.61.168','127.0.0.1'] 
-#     CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
-
+# domains on which this webapp will work
 ALLOWED_HOSTS = ['10.222.233.69','159.69.61.168','127.0.0.1','merkit.cz','www.merkit.cz'] 
 CSRF_TRUSTED_ORIGINS = ['http://merkit.*', 'https://merkit.*']
 
 
-# Application definition
-
-
-
-
-
 ROOT_URLCONF = 'merkit.urls'
-
-
 
 WSGI_APPLICATION = 'merkit.wsgi.application'
 
@@ -111,6 +98,7 @@ STATICFILES_DIRS = (
 SITE_ID = 1
 
 
+# folders with templates Django will see
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -247,29 +235,26 @@ CMS_LANGUAGES = {
     },
 }
 
+# templates django-cms will use
 CMS_TEMPLATES = (
     ## Customize this
-    ('index.html',"Index"),
-    ('base.html',"Base"),
-    ('blog_base.html',"Blog Base"),
+    ('base.html',"Base"),   # base template for merkit
+    ('blog_base.html',"Blog Base"), # base template for merkit-blog
 )
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'      # can't be denied because of Django-CMS
 
+# dirs for static translation
 LOCALE_PATHS =(
     os.path.join(BASE_DIR,'locale'),
 )
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
+# security
 CSRF_COOKIE_SECURE = True
-
-# TODO in prod set this to True ... this False is due to the fact, that we work with HTTP and not HTTPS ... need to reroute that
 SESSION_COOKIE_SECURE = True
-# TODO set domain name
-#SESSION_COOKIE_DOMAIN = '10.222.233.69'
-#SESSION_COOKIE_NAME = 'session_id'
-
 CMS_PERMISSION = True
 
 CMS_PLACEHOLDER_CONF = {}
@@ -293,13 +278,13 @@ THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.filters'
 )
 
+# types of tags for django-cms html plugin
 DJANGOCMS_STYLE_TAGS = ['div', 'article', 'section', 'header', 'footer',
                         'h1', 'h2', 'h3', 'h4', 'h5', 'h6','ul','li']
 
 
 
 # EMAIL
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
@@ -307,11 +292,8 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 
 
-# TODO: create key on admin google account
-
+# RECAPTCHA
 RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
-
-# RECAPTCHA_DOMAIN = 'www.recaptcha.net'
 RECAPTCHA_REQUIRED_SCORE = 0.85
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']

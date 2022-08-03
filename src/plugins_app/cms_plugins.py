@@ -23,6 +23,8 @@ class NavLinkPlugin(CMSPluginBase):
 
     def render(self,context,instance,placeholder):
 
+        """ Modifies the rendering of Nav plugin, finds the links of all the sections and webpages that are to be shown. """
+
         unsorted_links = []
 
         page_id = instance.placeholder.page.id
@@ -34,11 +36,16 @@ class NavLinkPlugin(CMSPluginBase):
             if placeholder.slot == 'content':
                 break
 
+        if placeholder.slot != 'content':
+            context['instance'] = instance
+            context['placeholder'] = placeholder
+            return context
+
         plugins = placeholder.get_plugins(language=get_language())
 
         link_manager = LinkManager.objects.first()
 
-        # in case none exist
+        # in case none exists
         if link_manager is None:
             link_manager = LinkManager()
             link_manager.save()
@@ -94,12 +101,14 @@ class ContactFormPlugin(CMSPluginBase):
 
     def render(self,context,instance,placeholder):
 
+        """ Modifies the rendering of the Contact plugin, handles the POST request of the form. """
+
         request = context['request']
 
         if request.method == "POST":
             if 'contact_submit' in request.POST:
                 submit_form = SubmitContactForm(request.POST)
-                if submit_form.is_valid():
+                if submit_form.is_valid():      # this func checks csrf, form validity and recaptcha
                     email = submit_form.cleaned_data['email']
                     first_name = submit_form.cleaned_data['first_name']
                     last_name = submit_form.cleaned_data['last_name']
@@ -143,30 +152,42 @@ class ServicesPlugin(CMSPluginBase):
 
     def render(self,context,instance,placeholder):
 
+        """ Modifies the rendering of Services plugin, shows only those that are chosen (3),
+        manages the checkbox form to choose which are chosen and sticks them to the Service detail. """
+
         request = context['request']
+        language = get_language()
         if request.method == "POST":
             if 'plugin_select' in request.POST:
                 selected = request.POST.getlist('plugin_select')
                 if len(selected) == 3:
-                    previouse_pks = ServiceModel.objects.filter(featured=True)
+                    previouse_pks = ServiceModel.objects.filter(featured=True,language=language)
+                    # unfeatures all the plugins
                     for prev_pk in previouse_pks:
                         prev_pk.featured = False
                         prev_pk.save()
 
+                    # features the new ones
                     for item in selected:
                         new = ServiceModel.objects.get(pk=item)
                         new.featured = True
                         new.save()
-                        all_new = ServiceModel.objects.filter(name=new.name)
-                        if len(all_new) == 2:
-                            for candidate in all_new:
+                        # gets both plugins (published and draft) and changes the published one according to the draft one
+                        published_plugins = ServiceModel.objects.filter(name=new.name,language=language).exclude(pk=new.pk)
+
+                        if len(published_plugins) == 1:
+                            for candidate in published_plugins:
                                 if candidate.pk != new.pk:
                                     candidate.featured = True
                                     candidate.save()
 
                         else:
-                            #TODO: manage if somehow there are more ... maybe sort them using pks and make twos ... + add some string to them (self.name)
-                            pass
+                            # for now let the position in the placeholder be static
+                            try_new = ServiceModel.objects.filter(name=new.name,language=language,position=new.position).exclude(pk=new.pk)[0]
+
+                            try_new.featured = True
+                            try_new.save()
+
 
         instance_pks = []
         for plugin in instance.child_plugin_instances:
@@ -174,11 +195,13 @@ class ServicesPlugin(CMSPluginBase):
 
         all_instance_plugins = ServiceModel.objects.filter(pk__in=instance_pks)
 
-        service_plugins = ServiceModel.objects.filter(featured=True,pk__in=instance_pks)
+        service_plugins = ServiceModel.objects.filter(featured=True,pk__in=instance_pks).order_by('position')
 
-        detail_plugins = ServiceDetailModel.objects.all()
+        detail_plugins = ServiceDetailModel.objects.filter(language=language).order_by('parent__position')
         rendered_details = []
 
+
+        # get plugin details according to selected plugins
         for detail in detail_plugins:
             for plugin in service_plugins:
                 if detail.parent.pk == plugin.pk:
