@@ -1,2 +1,7 @@
 .env
 staticfiles/
+__pycache__/
+media/
+
+*.log
+*.pot
