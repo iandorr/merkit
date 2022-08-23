@@ -92,7 +92,7 @@ STATIC_ROOT = os.path.join(DATA_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'merkit', 'static'),
     os.path.join(BASE_DIR, 'plugins_app', 'static'),
-    os.path.join(BASE_DIR, 'blog_app', 'static'),
+    # os.path.join(BASE_DIR, 'blog_app', 'static'),
 )
 
 SITE_ID = 1
