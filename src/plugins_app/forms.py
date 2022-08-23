@@ -22,6 +22,7 @@ class SubmitContactForm(forms.Form):
     captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
 
     def __init__(self, *args, **kwargs):
+        """ Adding classes for styling purposes. """
         super(SubmitContactForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             if visible.name == 'country_code':
