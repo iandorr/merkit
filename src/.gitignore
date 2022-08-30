@@ -5,3 +5,5 @@ media/
 
 *.log
 *.pot
+
+*.mo

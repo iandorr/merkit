@@ -22,10 +22,10 @@ class LinkManager(models.Model):
 
 class DefaultPluginModel(CMSPlugin):
 
-    show_link = models.BooleanField(default=False)
-    link_title = models.CharField(max_length=64)
-    link_href = models.CharField(max_length=64)
-    link_manager = models.ForeignKey(LinkManager,null=True,on_delete=models.SET_NULL)
+    show_link = models.BooleanField(default=False, help_text=_("If selected, the link will be shown in the Nav Link Plugin."))
+    link_title = models.CharField(max_length=64, blank=True, help_text=_("Title that will be shown in Nav Link Plugin."))
+    link_href = models.CharField(max_length=64, blank=True, help_text=_("ID that will be appended to the section, create a unique one please."))
+    link_manager = models.ForeignKey(LinkManager,null=True,on_delete=models.SET_NULL,help_text=_("Please select Link Manager."))
 
     class Meta:
         abstract = True
@@ -62,7 +62,7 @@ class ServiceDetailModel(CMSPlugin):
     image1 = models.ImageField(upload_to='images/')
     image2 = models.ImageField(upload_to='images/')
 
-    references = HTMLField()
+    references = HTMLField(blank=True)
 
 
 class ContactFormModel(DefaultPluginModel):

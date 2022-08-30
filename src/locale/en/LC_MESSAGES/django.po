@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-28 19:26+0200\n"
+"POT-Creation-Date: 2022-08-30 15:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,28 +18,44 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\merkit\settings.py:213 .\merkit\settings.py:223
+#: .\merkit\settings.py:201 .\merkit\settings.py:211
 msgid "Czech"
 msgstr ""
 
-#: .\merkit\settings.py:214 .\merkit\settings.py:230
+#: .\merkit\settings.py:202 .\merkit\settings.py:218
 msgid "English"
 msgstr ""
 
-#: .\merkit\settings.py:215 .\merkit\settings.py:237
+#: .\merkit\settings.py:203 .\merkit\settings.py:225
 msgid "Slovak"
 msgstr ""
 
-#: .\plugins_app\cms_plugins.py:120
+#: .\plugins_app\cms_plugins.py:129
 msgid "Message sent successfully!"
 msgstr ""
 
-#: .\plugins_app\cms_plugins.py:124
+#: .\plugins_app\cms_plugins.py:133
 msgid "Error, try to send again!"
 msgstr ""
 
-#: .\plugins_app\forms.py:45 .\plugins_app\forms.py:48
+#: .\plugins_app\forms.py:46 .\plugins_app\forms.py:49
 msgid "Link href can't be empty, when show_link is True."
+msgstr ""
+
+#: .\plugins_app\models.py:25
+msgid "If selected, the link will be shown in the Nav Link Plugin."
+msgstr ""
+
+#: .\plugins_app\models.py:26
+msgid "Title that will be shown in Nav Link Plugin."
+msgstr ""
+
+#: .\plugins_app\models.py:27
+msgid "ID that will be appended to the section, create a unique one please."
+msgstr ""
+
+#: .\plugins_app\models.py:28
+msgid "Please select Link Manager."
 msgstr ""
 
 #: .\plugins_app\models.py:34
@@ -91,7 +107,7 @@ msgid "Text showcased under the title on the contact form."
 msgstr ""
 
 #: .\plugins_app\models.py:72
-msgid "Agree to terms."
+msgid "Agreement with the terms."
 msgstr ""
 
 #: .\plugins_app\templates\contact_form_plugin.html:34
@@ -123,7 +139,7 @@ msgid "Send"
 msgstr ""
 
 #: .\plugins_app\templates\services_list_plugin.html:32
-msgid "*You can select a maximum of 3 choices."
+msgid "*You can select precisely 3 choices."
 msgstr ""
 
 #: .\plugins_app\templates\services_list_plugin.html:37

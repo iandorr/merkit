@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-28 19:26+0200\n"
+"POT-Creation-Date: 2022-08-30 15:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,29 +19,45 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n "
 ">= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#: .\merkit\settings.py:213 .\merkit\settings.py:223
+#: .\merkit\settings.py:201 .\merkit\settings.py:211
 msgid "Czech"
 msgstr "Čeština"
 
-#: .\merkit\settings.py:214 .\merkit\settings.py:230
+#: .\merkit\settings.py:202 .\merkit\settings.py:218
 msgid "English"
 msgstr "Angličtina"
 
-#: .\merkit\settings.py:215 .\merkit\settings.py:237
+#: .\merkit\settings.py:203 .\merkit\settings.py:225
 msgid "Slovak"
 msgstr "Slovenčina"
 
-#: .\plugins_app\cms_plugins.py:120
+#: .\plugins_app\cms_plugins.py:129
 msgid "Message sent successfully!"
 msgstr "Správa úspešne odoslaná!"
 
-#: .\plugins_app\cms_plugins.py:124
+#: .\plugins_app\cms_plugins.py:133
 msgid "Error, try to send again!"
 msgstr "Chyba, skúste to odoslať ešte raz!"
 
-#: .\plugins_app\forms.py:45 .\plugins_app\forms.py:48
+#: .\plugins_app\forms.py:46 .\plugins_app\forms.py:49
 msgid "Link href can't be empty, when show_link is True."
 msgstr "Link href nesmie byť prázdny, ak je show_link True."
+
+#: .\plugins_app\models.py:25
+msgid "If selected, the link will be shown in the Nav Link Plugin."
+msgstr "Ak vybrané, link bude zobrazený v Nav Link Plugine."
+
+#: .\plugins_app\models.py:26
+msgid "Title that will be shown in Nav Link Plugin."
+msgstr "Titulok zobrazený v Nav Link Plugine."
+
+#: .\plugins_app\models.py:27
+msgid "ID that will be appended to the section, create a unique one please."
+msgstr "ID, ktoré bude udelené sekcii, vytvorte prosím unikátne."
+
+#: .\plugins_app\models.py:28
+msgid "Please select Link Manager."
+msgstr "Prosím zvoľte Link Manager."
 
 #: .\plugins_app\models.py:34
 msgid "Main welcome text."
