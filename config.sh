@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# common paths for scripts
+
+GIT_REPO=
+DIR=
+REPO_DIR=
+REQUIREMENTS=
+CONFIG=
+
+DATABASE_ENGINE=
+
+# set these variables
+DATABASE_NAME=
+DATABASE_USER=
+DATABASE_PASSWORD=
+DATABASE_HOST=
+
+RECAPTCHA_PUBLIC_KEY=
+RECAPTCHA_PRIVATE_KEY=
+
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=
+
+PYTHON_VERSION=
+
+# end of set
+
+if [ "$PYTHON_VERSION" == "3" ]; then
+    PYTHON="python3"
+    PIP="pip3"
+else
+    PYTHON="python"
+    PIP="pip"
+fi
+
+RED='\033[1;31m' 
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+
+NORMAL='\033[0m'
