@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:02+0200\n"
+"POT-Creation-Date: 2022-08-31 13:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,11 +31,15 @@ msgstr "Angličtina"
 msgid "Slovak"
 msgstr "Slovenčina"
 
-#: .\plugins_app\cms_plugins.py:129
+#: .\plugins_app\cms_plugins.py:112
+msgid "Please set the receiving email! Default is set to "
+msgstr "Prosím, nastavte prijímací email! Predvolené nastavenie je "
+
+#: .\plugins_app\cms_plugins.py:133
 msgid "Message sent successfully!"
 msgstr "Správa úspešne odoslaná!"
 
-#: .\plugins_app\cms_plugins.py:133
+#: .\plugins_app\cms_plugins.py:137
 msgid "Error, try to send again!"
 msgstr "Chyba, skúste to odoslať ešte raz!"
 
@@ -111,31 +115,31 @@ msgstr "Text zobrazený pod nadpisom kontaktného formulára."
 msgid "Agreement with the terms."
 msgstr "Súhlas s podmienkami."
 
-#: .\plugins_app\templates\contact_form_plugin.html:34
+#: .\plugins_app\templates\contact_form_plugin.html:41
 msgid "Email"
 msgstr "Email"
 
-#: .\plugins_app\templates\contact_form_plugin.html:42
+#: .\plugins_app\templates\contact_form_plugin.html:49
 msgid "Name"
 msgstr "Meno"
 
-#: .\plugins_app\templates\contact_form_plugin.html:47
+#: .\plugins_app\templates\contact_form_plugin.html:54
 msgid "Surname"
 msgstr "Priezvisko"
 
-#: .\plugins_app\templates\contact_form_plugin.html:56
+#: .\plugins_app\templates\contact_form_plugin.html:63
 msgid "Phone number"
 msgstr "Telefónne číslo"
 
-#: .\plugins_app\templates\contact_form_plugin.html:77
+#: .\plugins_app\templates\contact_form_plugin.html:84
 msgid "Subject"
 msgstr "Predmet"
 
-#: .\plugins_app\templates\contact_form_plugin.html:84
+#: .\plugins_app\templates\contact_form_plugin.html:91
 msgid "Message"
 msgstr "Správa"
 
-#: .\plugins_app\templates\contact_form_plugin.html:95
+#: .\plugins_app\templates\contact_form_plugin.html:102
 msgid "Send"
 msgstr "Odoslať"
 

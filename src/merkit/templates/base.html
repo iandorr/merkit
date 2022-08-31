@@ -18,7 +18,7 @@
     <nav class="navbar navbar-expand-lg bg-white navbar-light" id="navScrollSpy">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
-                {% placeholder main_logo or %}
+                {% placeholder "logo" or %}
                     <img src="{% static "/img/logo/logo_merkit.png" %}" alt="Merkit_logo" width="150px">
                 {% endplaceholder %}
             </a>
@@ -31,28 +31,13 @@
                 <ul class="navbar-nav ms-auto nav-pills" data-spy="affix" id="navbar-highlight">
                     <!-- As we currently have jsut one page, integrating the local menu into the huge one is not important, rather witch off the show_menu tag-->
                     <!-- {% show_menu 0 100 100 100 %} -->
-                    {% placeholder navbar_links or %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="#about-us">O NÁS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#services">SLUŽBY</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#products">PRODUKTY</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contact">KONTAKT</a>
-                        </li>
-                    {% endplaceholder %}
+                    {% placeholder "links" %}
                 </ul>
             </nav>
         </div>
     </nav>
 
-    {% placeholder content or %}
-        <p> nothing </p>
-    {% endplaceholder %}
+    {% placeholder "content" %}
 
 
     <footer>

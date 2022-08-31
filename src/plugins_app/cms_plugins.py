@@ -105,6 +105,13 @@ class ContactFormPlugin(CMSPluginBase):
 
         request = context['request']
 
+        global_preferences = global_preferences_registry.manager()
+        receive_email = global_preferences['general__EMAIL_HOST_USER']
+
+        if receive_email == settings.EMAIL_HOST_USER:
+            warning = _("Please set the receiving email! Default is set to ") + settings.EMAIL_HOST_USER
+            messages.warning(request,warning)
+
         if request.method == "POST":
             if 'contact_submit' in request.POST:
                 submit_form = SubmitContactForm(request.POST)
@@ -119,9 +126,6 @@ class ContactFormPlugin(CMSPluginBase):
 
                     html_string = render_to_string("mail_template.html",{'title':"Email from Merkit",'first_name':first_name,'last_name':last_name,'country_code':country_code,'phone_number':phone_number,'text':text,'email':email})
                     text_string = strip_tags(html_string)
-
-                    global_preferences = global_preferences_registry.manager()
-                    receive_email = global_preferences['general__EMAIL_HOST_USER']
 
                     email_class = EmailMultiAlternatives(subject,text_string,settings.EMAIL_HOST_USER,[receive_email])
                     email_class.send()

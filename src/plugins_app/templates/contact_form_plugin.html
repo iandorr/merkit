@@ -16,6 +16,13 @@
                                     {{message}}
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
+                            {% elif message.tags == 'warning' %}
+                                {% if request.toolbar.edit_mode_active %}
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        {{message}}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                {% endif %}
                             {% elif message.tags == 'error' %}
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     {{message}}
