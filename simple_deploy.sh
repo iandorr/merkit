@@ -1,6 +1,27 @@
 #!/bin/bash
 
-source config.sh
+RED='\033[1;31m' 
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+
+NORMAL='\033[0m'
+
+read -p "$(printf "${YELLOW}WARNING${NORMAL}: Are you sure you are in an environment [y/n]?") " yn
+
+case $yn in
+    [Yy]* ) ;;
+    [Nn]* ) exit 1;;
+    * ) exit 1;;
+esac
+
+
+if test -f config.sh && source config.sh;then
+    printf "\n${GREEN}INFO${NORMAL}: Config sourced.\n"
+else
+    printf "\n${RED}ERROR${NORMAL}: Error sourcing config, are you sure there is config.sh?\n"
+    exit 1
+fi
+
 
 # bash for first time setup
 
@@ -14,6 +35,7 @@ if git -C $DIR pull || git clone $GIT_REPO $DIR; then
     printf "\n${GREEN}INFO${NORMAL}: Git pulled.\n"
 else
     printf "\n${RED}ERROR${NORMAL}: Error pulling git, check if correct repository.\n"
+    exit 1
 fi
 
 cd $DIR
