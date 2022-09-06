@@ -119,6 +119,19 @@ else
     printf "\n${RED}ERROR${NORMAL}: Some problems in translations compilation.\n"
 fi
 
+read -p "$(printf "${YELLOW}WARNING${NORMAL}: Do you want to create a superuser? [y/n]?") " suyn
+
+case $suyn in
+    [Yy]* )
+        if $PYTHON manage.py createsuperuser;then
+            printf "\n${GREEN}INFO${NORMAL}: Superuser created.\n"
+        else
+            printf "\n${RED}ERROR${NORMAL}: There was a problem in superuser creation.\n"
+        fi
+    ;;
+    * ) ;;
+esac
+
 # restart nginx and wsgi
 
 
