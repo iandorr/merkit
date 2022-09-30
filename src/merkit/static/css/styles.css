@@ -229,6 +229,16 @@ input {
   background-size: cover;
 }
 
+.prod-sec-apps{
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 992px){
+  .prod-sec-apps-img-container{
+    max-width: 33.33%;
+  }
+}
+
 .bg_img {
   background-image: url('../img/backgrounds/connect_light_bw.jpg');
   min-height: 100%;
