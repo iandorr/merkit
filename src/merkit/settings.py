@@ -17,6 +17,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 from decouple import config
 from distutils.util import strtobool
+import ast
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +34,7 @@ DEBUG = strtobool(config('DEBUG'))
 
 
 # domains on which this webapp will work
-ALLOWED_HOSTS = ['10.222.233.69','159.69.61.168','127.0.0.1','merkit.cz','www.merkit.cz'] 
+ALLOWED_HOSTS = ast.literal_eval(config('ALLOWED_HOSTS'))
 CSRF_TRUSTED_ORIGINS = ['http://merkit.*', 'https://merkit.*']
 
 
