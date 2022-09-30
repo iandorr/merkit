@@ -8,6 +8,9 @@ REPO_DIR=
 REQUIREMENTS=
 CONFIG=
 
+# allowed_hosts (IP and domain names), use formal IP="['a','b']"
+IP=
+
 DATABASE_ENGINE=
 
 # set these variables

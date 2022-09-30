@@ -71,6 +71,16 @@ else
     DJANGO_SECRET_KEY="SECRET_KEY='"$DJANGO_SECRET_KEY_VALUE"'"
     echo -e $DJANGO_SECRET_KEY >> $CONFIG
     printf "\n${GREEN}INFO${NORMAL}: Django secret key generated.\n"
+    # Allow Hosts
+    if ! test -z $IP;then
+        echo -e "ALLOWED_HOSTS = $IP" >> $CONFIG
+    else
+        IP=$(hostname -I | head -n1 | cut -d " " -f1)
+	printf "\n${YELLOW}WARNING${NORMAL}: IP not set, reversing to $IP.\n"
+	echo -e "ALLOWED_HOSTS = ['$IP']" >> $CONFIG
+    fi
+    printf "\n${GREEN}INFO${NORMAL}: Allowed hosts set up.\n"
+
     # generating recaptcha data
     if ! test -z "$RECAPTCHA_PUBLIC_KEY" && ! test -z "$RECAPTCHA_PRIVATE_KEY";then
         echo -e "RECAPTCHA_PUBLIC_KEY='"$RECAPTCHA_PUBLIC_KEY"'" >> $CONFIG
