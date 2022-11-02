@@ -9,12 +9,10 @@
         <div class="container">
             <div class="d-lg-flex prod-sec-apps">
                 <div class="pe-lg-5 service_detail_text">                   
-                    <p>{{instance.text}}</p>
-                    <p>
-                        {% autoescape off %}
-                            {{instance.references}}
-                        {% endautoescape %}
-                    </p>
+                    {% for plugin in instance.child_plugin_instances %}
+                        <p>what</p>
+                        {% render_plugin plugin %}
+                    {% endfor %}
                 </div>
                 <div class="service_detail_images prod-sec-apps-img-container">
                     <div>

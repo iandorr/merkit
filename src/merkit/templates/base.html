@@ -15,27 +15,6 @@
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" tab-index="0">
     {% cms_toolbar %}
-    <nav class="navbar navbar-expand-lg bg-white navbar-light" id="navScrollSpy">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">
-                {% placeholder "logo" or %}
-                    <img src="{% static "/img/logo/logo_merkit.png" %}" alt="Merkit_logo" width="150px">
-                {% endplaceholder %}
-            </a>
-
-            <button class="navbar-toggler" data-bs-target="#navmenu" data-bs-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <nav class="collapse navbar-collapse" id="navmenu">
-                <ul class="navbar-nav ms-auto nav-pills" data-spy="affix" id="navbar-highlight">
-                    <!-- As we currently have jsut one page, integrating the local menu into the huge one is not important, rather witch off the show_menu tag-->
-                    <!-- {% show_menu 0 100 100 100 %} -->
-                    {% placeholder "links" %}
-                </ul>
-            </nav>
-        </div>
-    </nav>
 
     {% placeholder "content" %}
 

@@ -13,13 +13,24 @@ from django.utils.translation import gettext_lazy as _
 from cms.models.pagemodel import Page
 from dynamic_preferences.registries import global_preferences_registry
 
-from plugins_app.models import WelcomeModel,MainInfoModel,ContactFormModel, ServicesModel, ServiceModel, ServiceDetailModel, LinkManager
+from plugins_app.models import WelcomeModel,MainInfoModel,ContactFormModel, ServicesModel, ServiceModel, ServiceDetailModel, LinkManager, MerkitNavbarModel
 from plugins_app.forms import ContactPluginForm, SubmitContactForm, ServiceForm
 
+
 @plugin_pool.register_plugin
-class NavLinkPlugin(CMSPluginBase):
-    render_template = "navbar_plugin.html"
+class MerkitNavbarPlugin(CMSPluginBase):
+
+    model = MerkitNavbarModel
+    render_template = "merkit_navbar_plugin.html"
+    allow_children = True
+    child_classes = ['MerkitLinkPlugin']
+
+@plugin_pool.register_plugin
+class MerkitLinkPlugin(CMSPluginBase):
+    render_template = "merkit_link_plugin.html"
     cache = False
+    require_parent = True
+    parent_classes = ['MerkitNavbarPlugin']
 
     def render(self,context,instance,placeholder):
 
@@ -81,22 +92,22 @@ class NavLinkPlugin(CMSPluginBase):
 
 
 @plugin_pool.register_plugin
-class WelcomePlugin(CMSPluginBase):
+class MerkitWelcomePlugin(CMSPluginBase):
     model = WelcomeModel
-    render_template = "welcome_plugin.html"
+    render_template = "merkit_welcome_plugin.html"
     cache = False
 
 @plugin_pool.register_plugin
-class MainInfoPlugin(CMSPluginBase):
+class MerkitMainInfoPlugin(CMSPluginBase):
     model = MainInfoModel
-    render_template = "main_info_plugin.html"
+    render_template = "merkit_main_info_plugin.html"
     cache = False
 
 @plugin_pool.register_plugin
-class ContactFormPlugin(CMSPluginBase):
+class MerkitContactFormPlugin(CMSPluginBase):
     model = ContactFormModel
     form = ContactPluginForm
-    render_template = "contact_form_plugin.html"
+    render_template = "merkit_contact_form_plugin.html"
     cache = False
 
     def render(self,context,instance,placeholder):
@@ -147,11 +158,11 @@ class ContactFormPlugin(CMSPluginBase):
 
 
 @plugin_pool.register_plugin
-class ServicesPlugin(CMSPluginBase):
+class MerkitServiceListPlugin(CMSPluginBase):
     model = ServicesModel
-    render_template = "services_list_plugin.html"
+    render_template = "merkit_service_list_plugin.html"
     allow_children = True
-    child_classes = ['ServicePlugin']
+    child_classes = ['MerkitServicePlugin']
     cache = False
 
     def render(self,context,instance,placeholder):
@@ -179,18 +190,20 @@ class ServicesPlugin(CMSPluginBase):
                         # gets both plugins (published and draft) and changes the published one according to the draft one
                         published_plugins = ServiceModel.objects.filter(name=new.name,language=language).exclude(pk=new.pk)
 
-                        if len(published_plugins) == 1:
-                            for candidate in published_plugins:
-                                if candidate.pk != new.pk:
-                                    candidate.featured = True
-                                    candidate.save()
 
-                        else:
-                            # for now let the position in the placeholder be static
-                            try_new = ServiceModel.objects.filter(name=new.name,language=language,position=new.position).exclude(pk=new.pk)[0]
+                        if len(published_plugins) != 0:     #if published one exists
+                            if len(published_plugins) == 1:
+                                for candidate in published_plugins:
+                                    if candidate.pk != new.pk:
+                                        candidate.featured = True
+                                        candidate.save()
 
-                            try_new.featured = True
-                            try_new.save()
+                            else:
+                                # for now let the position in the placeholder be static
+                                try_new = ServiceModel.objects.filter(name=new.name,language=language,position=new.position).exclude(pk=new.pk)[0]
+
+                                try_new.featured = True
+                                try_new.save()
 
 
         instance_pks = []
@@ -223,26 +236,28 @@ class ServicesPlugin(CMSPluginBase):
         return context
 
 @plugin_pool.register_plugin
-class ServicePlugin(CMSPluginBase):
-    render_template = 'service_plugin.html'
+class MerkitServicePlugin(CMSPluginBase):
+    render_template = 'merkit_service_plugin.html'
     model = ServiceModel
     form = ServiceForm
     require_parent = True
-    parent_classes = ['ServicesPlugin']
+    parent_classes = ['MerkitServiceListPlugin']
     allow_children = True
-    child_classes = ['ServiceDetailPlugin']
+    child_classes = ['MerkitServiceDetailPlugin']
 
     def render(self, context, instance, placeholder):
-        context = super(ServicePlugin, self).render(context, instance, placeholder)
+        context = super(MerkitServicePlugin, self).render(context, instance, placeholder)
         return context
 
 @plugin_pool.register_plugin
-class ServiceDetailPlugin(CMSPluginBase):
-    render_template = 'service_detail_plugin.html'
+class MerkitServiceDetailPlugin(CMSPluginBase):
+    render_template = 'merkit_service_detail_plugin.html'
     model = ServiceDetailModel
     require_parent = True
-    parent_classes = ['ServicePlugin']
+    parent_classes = ['MerkitServicePlugin']
+    allow_children = True
+    child_classes = ['TextPlugin','Bootstrap4LinkPlugin','Bootstrap4ListGroupPlugin','Bootstrap4PicturePlugin']
 
     def render(self, context, instance, placeholder):
-        context = super(ServiceDetailPlugin, self).render(context, instance, placeholder)
+        context = super(MerkitServiceDetailPlugin, self).render(context, instance, placeholder)
         return context

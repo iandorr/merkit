@@ -1,0 +1,26 @@
+{% load cms_tags menu_tags sekizai_tags %}
+{% load static %}
+
+<html>
+    <nav class="navbar navbar-expand-lg bg-white navbar-light" id="navScrollSpy">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="{{ MEDIA_URL }}{{ instance.logo}}" alt="Merkit_logo" width="150px">
+            </a>
+
+            <button class="navbar-toggler" data-bs-target="#navmenu" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <nav class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto nav-pills" data-spy="affix" id="navbar-highlight">
+                    {% for plugin in instance.child_plugin_instances %}
+                        {% render_plugin plugin %}
+                    {% empty %}
+                        {% show_menu 0 100 100 100 %}
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </nav>
+</html>

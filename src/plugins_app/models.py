@@ -20,6 +20,10 @@ class LinkManager(models.Model):
     def __str__(self):
         return "Link Manager"
 
+class MerkitNavbarModel(CMSPlugin):
+
+    logo = models.ImageField(upload_to='images/')
+
 class DefaultPluginModel(CMSPlugin):
 
     show_link = models.BooleanField(default=False, help_text=_("If selected, the link will be shown in the Nav Link Plugin."))
@@ -58,11 +62,8 @@ class ServiceModel(CMSPlugin):
 class ServiceDetailModel(CMSPlugin):
 
     title = models.CharField(max_length=64,help_text=_("Title of the service detail."))
-    text = models.TextField(help_text=_("Text describing the service."))
     image1 = models.ImageField(upload_to='images/')
     image2 = models.ImageField(upload_to='images/')
-
-    references = HTMLField(blank=True)
 
 
 class ContactFormModel(DefaultPluginModel):
