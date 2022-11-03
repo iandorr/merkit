@@ -212,24 +212,22 @@ class MerkitServiceListPlugin(CMSPluginBase):
 
         all_instance_plugins = ServiceModel.objects.filter(pk__in=instance_pks)
 
-        service_plugins = ServiceModel.objects.filter(featured=True,pk__in=instance_pks).order_by('position')
-
-        detail_plugins = ServiceDetailModel.objects.filter(language=language).order_by('parent__position')
-        rendered_details = []
-
-
-        # get plugin details according to selected plugins
-        for detail in detail_plugins:
-            for plugin in service_plugins:
-                if detail.parent.pk == plugin.pk:
-                    rendered_details.append(detail)
-                    break
+        service_models = ServiceModel.objects.filter(featured=True,pk__in=instance_pks).order_by('position')
+        service_plugins = []
+        detail_plugins = []
+        for plugin in instance.child_plugin_instances:
+            if(len(list(filter(lambda x : x.pk == plugin.pk,service_models)))==1):
+                service_plugins.append(plugin)
+                for child in plugin.child_plugin_instances:
+                    if child is not None:
+                        detail_plugins.append(child)
 
         context = super().render(context, instance, placeholder)
 
         context.update({
             'rendered_plugins': service_plugins,
-            'rendered_details': rendered_details,
+            #'rendered_details': rendered_details,
+            'rendered_details': detail_plugins,
             'instance_plugins': all_instance_plugins
         })
 
@@ -247,6 +245,12 @@ class MerkitServicePlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         context = super(MerkitServicePlugin, self).render(context, instance, placeholder)
+        # print("Children of Service Plugin")
+        # print(instance.child_plugin_instances)
+        # print("Children of Service Detail Plugin")
+        # if instance.child_plugin_instances is not None:
+        #     for child in instance.child_plugin_instances:
+        #         print(child.child_plugin_instances)
         return context
 
 @plugin_pool.register_plugin
