@@ -2,7 +2,7 @@ from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import get_language
-from django.core.mail import send_mail, EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
@@ -14,7 +14,7 @@ from cms.models.pagemodel import Page
 from dynamic_preferences.registries import global_preferences_registry
 
 from plugins_app.models import WelcomeModel,MainInfoModel,ContactFormModel, ServicesModel, ServiceModel, ServiceDetailModel, LinkManager, MerkitNavbarModel
-from plugins_app.forms import ContactPluginForm, SubmitContactForm, ServiceForm
+from plugins_app.forms import SubmitContactForm, ServiceForm, WelcomeForm, MainInfoForm, ServiceListForm, ContactForm
 
 
 @plugin_pool.register_plugin
@@ -94,19 +94,21 @@ class MerkitLinkPlugin(CMSPluginBase):
 @plugin_pool.register_plugin
 class MerkitWelcomePlugin(CMSPluginBase):
     model = WelcomeModel
+    form = WelcomeForm
     render_template = "merkit_welcome_plugin.html"
     cache = False
 
 @plugin_pool.register_plugin
 class MerkitMainInfoPlugin(CMSPluginBase):
     model = MainInfoModel
+    form = MainInfoForm
     render_template = "merkit_main_info_plugin.html"
     cache = False
 
 @plugin_pool.register_plugin
 class MerkitContactFormPlugin(CMSPluginBase):
     model = ContactFormModel
-    form = ContactPluginForm
+    form = ContactForm
     render_template = "merkit_contact_form_plugin.html"
     cache = False
 
@@ -160,6 +162,7 @@ class MerkitContactFormPlugin(CMSPluginBase):
 @plugin_pool.register_plugin
 class MerkitServiceListPlugin(CMSPluginBase):
     model = ServicesModel
+    form = ServiceListForm
     render_template = "merkit_service_list_plugin.html"
     allow_children = True
     child_classes = ['MerkitServicePlugin']
@@ -245,12 +248,6 @@ class MerkitServicePlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         context = super(MerkitServicePlugin, self).render(context, instance, placeholder)
-        # print("Children of Service Plugin")
-        # print(instance.child_plugin_instances)
-        # print("Children of Service Detail Plugin")
-        # if instance.child_plugin_instances is not None:
-        #     for child in instance.child_plugin_instances:
-        #         print(child.child_plugin_instances)
         return context
 
 @plugin_pool.register_plugin

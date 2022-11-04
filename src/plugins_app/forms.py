@@ -5,7 +5,7 @@ from django.core.validators import EMPTY_VALUES
 from django.utils.translation import gettext_lazy as _
 
 
-from plugins_app.models import ContactFormModel, ServiceModel
+from plugins_app.models import ContactFormModel, ServiceModel, WelcomeModel, MainInfoModel, ServicesModel
 
 class SubmitContactForm(forms.Form):
 
@@ -30,13 +30,11 @@ class SubmitContactForm(forms.Form):
             else:
                 visible.field.widget.attrs['class'] = 'form-control'
 
-class ContactPluginForm(forms.ModelForm):
-    class Meta:
-        model = ContactFormModel
-        fields = '__all__'
+class DefaultPluginForm(forms.ModelForm):
 
     def clean(self):
         show_link = self.cleaned_data.get('show_link', False)
+        print(show_link)
         if show_link:
             # validate the activity name
             link_href = self.cleaned_data.get('link_href', None)
@@ -48,6 +46,27 @@ class ContactPluginForm(forms.ModelForm):
                 self._errors['link_title'] = self.error_class([
                     _("Link href can't be empty, when show_link is True.")])
         return self.cleaned_data
+
+class WelcomeForm(DefaultPluginForm):
+    class Meta:
+        model = WelcomeModel
+        exclude = ['link_manager']
+
+class MainInfoForm(DefaultPluginForm):
+    class Meta:
+        model = MainInfoModel
+        exclude = ['link_manager']
+
+class ServiceListForm(DefaultPluginForm):
+    class Meta:
+        model = ServicesModel
+        exclude = ['link_manager']
+
+
+class ContactForm(DefaultPluginForm):
+    class Meta:
+        model = ContactFormModel
+        exclude = ['link_manager']
 
 
 class ServiceForm(forms.ModelForm):

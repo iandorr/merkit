@@ -34,6 +34,36 @@ class DefaultPluginModel(CMSPlugin):
     class Meta:
         abstract = True
 
+    def save(self, no_signals=False, *args, **kwargs):
+
+        managers = LinkManager.objects.all().order_by('pk')
+
+        if not managers.exists():
+            link_manager = LinkManager(number=1)
+            link_manager.save()
+
+        for i in range(1,len(managers)):
+            managers[i].delete()
+
+        link_manager = managers[0]
+
+        if self.link_manager == None:
+            self.link_manager = link_manager
+            self.save()
+
+
+        if not self.depth:
+            if self.parent_id or self.parent:
+                self.parent.add_child(instance=self)
+            else:
+                if not self.position and not self.position == 0:
+                    self.position = CMSPlugin.objects.filter(parent__isnull=True,
+                                                             language=self.language,
+                                                             placeholder_id=self.placeholder_id).count()
+                self.add_root(instance=self)
+            return
+        super().save(*args, **kwargs)
+
 class WelcomeModel(DefaultPluginModel):
     welcome_text = models.CharField(max_length=255,default="Vítejte na Merkit",help_text=_("Main welcome text."))
 
