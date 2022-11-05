@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 from plugins_app.models import ContactFormModel, ServiceModel, WelcomeModel, MainInfoModel, ServicesModel
+from plugins_app.utils import link_href_taken
 
 class SubmitContactForm(forms.Form):
 
@@ -33,6 +34,8 @@ class SubmitContactForm(forms.Form):
 class DefaultPluginForm(forms.ModelForm):
 
     def clean(self):
+        model = self.save(commit=False)
+
         show_link = self.cleaned_data.get('show_link', False)
         print(show_link)
         if show_link:
@@ -45,6 +48,10 @@ class DefaultPluginForm(forms.ModelForm):
             if link_title in EMPTY_VALUES:
                 self._errors['link_title'] = self.error_class([
                     _("Link href can't be empty, when show_link is True.")])
+
+        if link_href_taken(link_href,model):
+            self._errors['link_href'] = self.error_class([
+                _("Link href already taken.")])
         return self.cleaned_data
 
 class WelcomeForm(DefaultPluginForm):

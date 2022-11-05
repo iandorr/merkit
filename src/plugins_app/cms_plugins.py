@@ -13,8 +13,9 @@ from django.utils.translation import gettext_lazy as _
 from cms.models.pagemodel import Page
 from dynamic_preferences.registries import global_preferences_registry
 
-from plugins_app.models import WelcomeModel,MainInfoModel,ContactFormModel, ServicesModel, ServiceModel, ServiceDetailModel, LinkManager, MerkitNavbarModel
+from plugins_app.models import WelcomeModel,MainInfoModel,ContactFormModel, ServicesModel, ServiceModel, ServiceDetailModel, MerkitNavbarModel
 from plugins_app.forms import SubmitContactForm, ServiceForm, WelcomeForm, MainInfoForm, ServiceListForm, ContactForm
+from plugins_app.utils import get_link_manager
 
 
 @plugin_pool.register_plugin
@@ -54,12 +55,7 @@ class MerkitLinkPlugin(CMSPluginBase):
 
         plugins = placeholder.get_plugins(language=get_language())
 
-        link_manager = LinkManager.objects.first()
-
-        # in case none exists
-        if link_manager is None:
-            link_manager = LinkManager()
-            link_manager.save()
+        link_manager = get_link_manager()
         
         for f in link_manager._meta.get_fields():
             if f.one_to_many:
