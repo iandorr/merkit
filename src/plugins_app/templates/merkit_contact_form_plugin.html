@@ -32,7 +32,7 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="flex-fill ps-lg-5 ms-lg-5">
+                <div class="flex-fill ps-lg-5 ms-lg-5 contact-form-div">
                     {% if form %}
                         <form class="contact-form needs-validation" id="form" novalidate action="#{{instance.link_href}}" name="contact_form" method="POST">
                             {% csrf_token %}

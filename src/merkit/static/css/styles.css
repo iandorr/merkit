@@ -334,6 +334,11 @@ input {
   }
 }
 
+.contact-form-div{
+  min-width: 60%;
+  max-width: 70%;
+}
+
 /* IMPORTANT */
 /* ########## FIXES AFTER THE FRONTENDER BY DEFINITELY NOT A FRONTENDER ################################## */
 
