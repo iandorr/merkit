@@ -8,7 +8,7 @@ def get_link_manager():
     managers = LinkManager.objects.all().order_by('pk')
 
     if not managers.exists():
-        link_manager = LinkManager(number=1)
+        link_manager = LinkManager()
         link_manager.save()
 
     for i in range(1,len(managers)):
