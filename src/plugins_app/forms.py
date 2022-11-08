@@ -37,11 +37,10 @@ class DefaultPluginForm(forms.ModelForm):
         model = self.save(commit=False)
 
         show_link = self.cleaned_data.get('show_link', False)
-        print(show_link)
+        link_href = self.cleaned_data.get('link_href', None)
+        link_title = self.cleaned_data.get('link_title', None)
         if show_link:
             # validate the activity name
-            link_href = self.cleaned_data.get('link_href', None)
-            link_title = self.cleaned_data.get('link_title', None)
             if link_href in EMPTY_VALUES:
                 self._errors['link_href'] = self.error_class([
                     _("Link href can't be empty, when show_link is True.")])
