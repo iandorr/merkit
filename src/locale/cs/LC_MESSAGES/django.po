@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 13:59+0200\n"
+"POT-Creation-Date: 2022-11-10 12:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,134 +19,157 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#: .\merkit\settings.py:201 .\merkit\settings.py:211
+#: .\merkit\settings.py:202 .\merkit\settings.py:212
 msgid "Czech"
 msgstr "Čeština"
 
-#: .\merkit\settings.py:202 .\merkit\settings.py:218
+#: .\merkit\settings.py:203 .\merkit\settings.py:219
 msgid "English"
 msgstr "Angličtina"
 
-#: .\merkit\settings.py:203 .\merkit\settings.py:225
+#: .\merkit\settings.py:204 .\merkit\settings.py:226
 msgid "Slovak"
 msgstr "Slovenština"
 
-#: .\plugins_app\cms_plugins.py:112
+#: .\plugins_app\cms_plugins.py:121
 msgid "Please set the receiving email! Default is set to "
 msgstr "Prosím nastavte přijímací email! Výchozí nastavení je "
 
-#: .\plugins_app\cms_plugins.py:133
+#: .\plugins_app\cms_plugins.py:142
 msgid "Message sent successfully!"
 msgstr "Zpráva úspěšně odeslána!"
 
-#: .\plugins_app\cms_plugins.py:137
+#: .\plugins_app\cms_plugins.py:146
 msgid "Error, try to send again!"
 msgstr "Chyba, zkuste prosím znovu!"
 
-#: .\plugins_app\forms.py:46 .\plugins_app\forms.py:49
+#: .\plugins_app\forms.py:13
+msgid "placeholder-email"
+msgstr "já@doména.cz"
+
+#: .\plugins_app\forms.py:14
+msgid "placeholder-name"
+msgstr "Jan"
+
+#: .\plugins_app\forms.py:15
+msgid "placeholder-surname"
+msgstr "Novák"
+
+#: .\plugins_app\forms.py:17
+msgid "placeholder-countrycode"
+msgstr "+420"
+
+#: .\plugins_app\forms.py:48 .\plugins_app\forms.py:51
 msgid "Link href can't be empty, when show_link is True."
 msgstr "Link href nesmí být prázdný, když show_link je True."
 
-#: .\plugins_app\models.py:25
+#: .\plugins_app\forms.py:55
+msgid "Link href already taken."
+msgstr "Link href je již zabraný."
+
+#: .\plugins_app\forms.py:91
+msgid "Name already taken."
+msgstr "Name je již zabrané."
+
+#: .\plugins_app\models.py:29
 msgid "If selected, the link will be shown in the Nav Link Plugin."
 msgstr "Pokud vybráno, link bude zobrazen v Nav Link Pluginu."
 
-#: .\plugins_app\models.py:26
+#: .\plugins_app\models.py:30
 msgid "Title that will be shown in Nav Link Plugin."
 msgstr "Titulek zobrazený v Nav Link Pluginu."
 
-#: .\plugins_app\models.py:27
+#: .\plugins_app\models.py:31
 msgid "ID that will be appended to the section, create a unique one please."
 msgstr "ID, které bude uděleno sekci, vytvořte prosím unikátní."
 
-#: .\plugins_app\models.py:28
+#: .\plugins_app\models.py:32
 msgid "Please select Link Manager."
 msgstr "Prosím zvolte Link Manager."
 
-#: .\plugins_app\models.py:34
+#: .\plugins_app\models.py:68
 msgid "Main welcome text."
 msgstr "Hlavní uvítací text."
 
-#: .\plugins_app\models.py:37
+#: .\plugins_app\models.py:71
 msgid "Title of the main info section."
 msgstr "Titulek sekce hlavní informace."
 
-#: .\plugins_app\models.py:38
+#: .\plugins_app\models.py:72
 msgid "Text showcased in the main info section."
 msgstr "Text zobrazený v sekci hlavní informace."
 
-#: .\plugins_app\models.py:41
+#: .\plugins_app\models.py:75
 msgid "Title of the services section."
 msgstr "Titulek sekce služeb."
 
-#: .\plugins_app\models.py:45
+#: .\plugins_app\models.py:79
 msgid "Discerning name of the service, must be unique!"
 msgstr "Rozeznávací jméno služby, musí být unikátní!"
 
-#: .\plugins_app\models.py:47
+#: .\plugins_app\models.py:81
 msgid "Title of the service."
 msgstr "Titulek služby."
 
-#: .\plugins_app\models.py:50
+#: .\plugins_app\models.py:84
 msgid "Title of the service on the back of the card."
 msgstr "Titulek služby na zadní straně karty."
 
-#: .\plugins_app\models.py:51
+#: .\plugins_app\models.py:85
 msgid "Text on the back of the card."
 msgstr "Text na zadní straně karty."
 
-#: .\plugins_app\models.py:60
+#: .\plugins_app\models.py:94
 msgid "Title of the service detail."
 msgstr "Titulek detailu služby."
 
-#: .\plugins_app\models.py:61
-msgid "Text describing the service."
-msgstr "Text popisující službu."
-
-#: .\plugins_app\models.py:69
+#: .\plugins_app\models.py:100
 msgid "Title of the contact form."
 msgstr "Titulek kontaktního formuláře."
 
-#: .\plugins_app\models.py:70
+#: .\plugins_app\models.py:101
 msgid "Text showcased under the title on the contact form."
 msgstr "Text zobrazený pod titulkem na kontaktním formuláři."
 
-#: .\plugins_app\models.py:72
+#: .\plugins_app\models.py:103
 msgid "Agreement with the terms."
 msgstr "Souhlas s podmínkami."
 
-#: .\plugins_app\templates\contact_form_plugin.html:41
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:41
 msgid "Email"
 msgstr "Email"
 
-#: .\plugins_app\templates\contact_form_plugin.html:49
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:49
 msgid "Name"
 msgstr "Jméno"
 
-#: .\plugins_app\templates\contact_form_plugin.html:54
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:54
 msgid "Surname"
 msgstr "Příjmení"
 
-#: .\plugins_app\templates\contact_form_plugin.html:63
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:63
 msgid "Phone number"
 msgstr "Telefonní číslo"
 
-#: .\plugins_app\templates\contact_form_plugin.html:84
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:84
 msgid "Subject"
 msgstr "Předmět"
 
-#: .\plugins_app\templates\contact_form_plugin.html:91
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:91
 msgid "Message"
 msgstr "Zpráva"
 
-#: .\plugins_app\templates\contact_form_plugin.html:102
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:102
 msgid "Send"
 msgstr "Odeslat"
 
-#: .\plugins_app\templates\services_list_plugin.html:32
+#: .\plugins_app\templates\merkit_service_list_plugin.html:32
 msgid "*You can select precisely 3 choices."
 msgstr "*Vybrat lze pouze 3 možnosti."
 
-#: .\plugins_app\templates\services_list_plugin.html:37
+#: .\plugins_app\templates\merkit_service_list_plugin.html:37
 msgid "Save"
 msgstr "Uložit"
+
+#~ msgid "Text describing the service."
+#~ msgstr "Text popisující službu."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 13:59+0200\n"
+"POT-Creation-Date: 2022-11-10 12:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,134 +18,154 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\merkit\settings.py:201 .\merkit\settings.py:211
+#: .\merkit\settings.py:202 .\merkit\settings.py:212
 msgid "Czech"
 msgstr ""
 
-#: .\merkit\settings.py:202 .\merkit\settings.py:218
+#: .\merkit\settings.py:203 .\merkit\settings.py:219
 msgid "English"
 msgstr ""
 
-#: .\merkit\settings.py:203 .\merkit\settings.py:225
+#: .\merkit\settings.py:204 .\merkit\settings.py:226
 msgid "Slovak"
 msgstr ""
 
-#: .\plugins_app\cms_plugins.py:112
+#: .\plugins_app\cms_plugins.py:121
 msgid "Please set the receiving email! Default is set to "
 msgstr ""
 
-#: .\plugins_app\cms_plugins.py:133
+#: .\plugins_app\cms_plugins.py:142
 msgid "Message sent successfully!"
 msgstr ""
 
-#: .\plugins_app\cms_plugins.py:137
+#: .\plugins_app\cms_plugins.py:146
 msgid "Error, try to send again!"
 msgstr ""
 
-#: .\plugins_app\forms.py:46 .\plugins_app\forms.py:49
+#: .\plugins_app\forms.py:13
+msgid "placeholder-email"
+msgstr "me@domain.com"
+
+#: .\plugins_app\forms.py:14
+msgid "placeholder-name"
+msgstr "John"
+
+#: .\plugins_app\forms.py:15
+msgid "placeholder-surname"
+msgstr "Smith"
+
+#: .\plugins_app\forms.py:17
+msgid "placeholder-countrycode"
+msgstr "+1"
+
+#: .\plugins_app\forms.py:48 .\plugins_app\forms.py:51
 msgid "Link href can't be empty, when show_link is True."
 msgstr ""
 
-#: .\plugins_app\models.py:25
+#: .\plugins_app\forms.py:55
+msgid "Link href already taken."
+msgstr ""
+
+#: .\plugins_app\forms.py:91
+msgid "Name already taken."
+msgstr ""
+
+#: .\plugins_app\models.py:29
 msgid "If selected, the link will be shown in the Nav Link Plugin."
 msgstr ""
 
-#: .\plugins_app\models.py:26
+#: .\plugins_app\models.py:30
 msgid "Title that will be shown in Nav Link Plugin."
 msgstr ""
 
-#: .\plugins_app\models.py:27
+#: .\plugins_app\models.py:31
 msgid "ID that will be appended to the section, create a unique one please."
 msgstr ""
 
-#: .\plugins_app\models.py:28
+#: .\plugins_app\models.py:32
 msgid "Please select Link Manager."
 msgstr ""
 
-#: .\plugins_app\models.py:34
+#: .\plugins_app\models.py:68
 msgid "Main welcome text."
 msgstr ""
 
-#: .\plugins_app\models.py:37
+#: .\plugins_app\models.py:71
 msgid "Title of the main info section."
 msgstr ""
 
-#: .\plugins_app\models.py:38
+#: .\plugins_app\models.py:72
 msgid "Text showcased in the main info section."
 msgstr ""
 
-#: .\plugins_app\models.py:41
+#: .\plugins_app\models.py:75
 msgid "Title of the services section."
 msgstr ""
 
-#: .\plugins_app\models.py:45
+#: .\plugins_app\models.py:79
 msgid "Discerning name of the service, must be unique!"
 msgstr ""
 
-#: .\plugins_app\models.py:47
+#: .\plugins_app\models.py:81
 msgid "Title of the service."
 msgstr ""
 
-#: .\plugins_app\models.py:50
+#: .\plugins_app\models.py:84
 msgid "Title of the service on the back of the card."
 msgstr ""
 
-#: .\plugins_app\models.py:51
+#: .\plugins_app\models.py:85
 msgid "Text on the back of the card."
 msgstr ""
 
-#: .\plugins_app\models.py:60
+#: .\plugins_app\models.py:94
 msgid "Title of the service detail."
 msgstr ""
 
-#: .\plugins_app\models.py:61
-msgid "Text describing the service."
-msgstr ""
-
-#: .\plugins_app\models.py:69
+#: .\plugins_app\models.py:100
 msgid "Title of the contact form."
 msgstr ""
 
-#: .\plugins_app\models.py:70
+#: .\plugins_app\models.py:101
 msgid "Text showcased under the title on the contact form."
 msgstr ""
 
-#: .\plugins_app\models.py:72
+#: .\plugins_app\models.py:103
 msgid "Agreement with the terms."
 msgstr ""
 
-#: .\plugins_app\templates\contact_form_plugin.html:41
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:41
 msgid "Email"
 msgstr ""
 
-#: .\plugins_app\templates\contact_form_plugin.html:49
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:49
 msgid "Name"
 msgstr ""
 
-#: .\plugins_app\templates\contact_form_plugin.html:54
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:54
 msgid "Surname"
 msgstr ""
 
-#: .\plugins_app\templates\contact_form_plugin.html:63
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:63
 msgid "Phone number"
 msgstr ""
 
-#: .\plugins_app\templates\contact_form_plugin.html:84
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:84
 msgid "Subject"
 msgstr ""
 
-#: .\plugins_app\templates\contact_form_plugin.html:91
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:91
 msgid "Message"
 msgstr ""
 
-#: .\plugins_app\templates\contact_form_plugin.html:102
+#: .\plugins_app\templates\merkit_contact_form_plugin.html:102
 msgid "Send"
 msgstr ""
 
-#: .\plugins_app\templates\services_list_plugin.html:32
+#: .\plugins_app\templates\merkit_service_list_plugin.html:32
 msgid "*You can select precisely 3 choices."
 msgstr ""
 
-#: .\plugins_app\templates\services_list_plugin.html:37
+#: .\plugins_app\templates\merkit_service_list_plugin.html:37
 msgid "Save"
 msgstr ""
