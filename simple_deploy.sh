@@ -8,6 +8,8 @@ NORMAL='\033[0m'
 
 read -p "$(printf "${YELLOW}WARNING${NORMAL}: Are you sure you are in an environment [y/n]?") " yn
 
+CORRECT = true
+
 case $yn in
     [Yy]* ) ;;
     [Nn]* ) exit 1;;
@@ -29,16 +31,27 @@ fi
 
 if ! test -d "$DIR"; then
     mkdir $DIR
+    cd $DIR
 fi
 
-if git -C $DIR pull || git clone $GIT_REPO $DIR; then
+if git pull; then
     printf "\n${GREEN}INFO${NORMAL}: Git pulled.\n"
+elif git clone $GIT_REPO .; then
+    printf "\n${GREEN}INFO${NORMAL}: Git cloned.\n"
 else
     printf "\n${RED}ERROR${NORMAL}: Error pulling git, check if correct repository.\n"
     exit 1
 fi
 
-cd $DIR
+# working for git > 1.8.5
+# if git -C $DIR pull || git clone $GIT_REPO $DIR; then
+#     printf "\n${GREEN}INFO${NORMAL}: Git pulled.\n"
+# else
+#     printf "\n${RED}ERROR${NORMAL}: Error pulling git, check if correct repository.\n"
+#     exit 1
+# fi
+
+#cd $DIR
 
 if ! test -z "$REPO_DIR";then
     cd $REPO_DIR
@@ -51,9 +64,11 @@ if test -f "$REQUIREMENTS"; then
         printf "\n${GREEN}INFO${NORMAL}: Dependencies installed.\n"
     else
         printf "\n${RED}ERROR${NORMAL}: At least one dependency installed incorrectly.\n"
+        CORRECT = false
     fi
 else 
     printf "\n${RED}ERROR${NORMAL}: Dependecies list missing.\n"
+    CORRECT = false
 fi
 
 # Set up secret key, database, ... (.env file)
@@ -76,8 +91,8 @@ else
         echo -e "ALLOWED_HOSTS = $IP" >> $CONFIG
     else
         IP=$(hostname -I | head -n1 | cut -d " " -f1)
-	printf "\n${YELLOW}WARNING${NORMAL}: IP not set, reversing to $IP.\n"
-	echo -e "ALLOWED_HOSTS = ['$IP']" >> $CONFIG
+	    printf "\n${YELLOW}WARNING${NORMAL}: IP not set, reversing to $IP.\n"
+	    echo -e "ALLOWED_HOSTS = ['$IP']" >> $CONFIG
     fi
     printf "\n${GREEN}INFO${NORMAL}: Allowed hosts set up.\n"
 
@@ -88,6 +103,7 @@ else
         printf "\n${GREEN}INFO${NORMAL}: Recaptcha set.\n"
     else
         printf "\n${RED}ERROR${NORMAL}: Recaptcha not set --> skipping\n"
+        CORRECT = false
     fi
     # generating database
     if ! test -z "$DATABASE_NAME" && ! test -z "$DATABASE_USER" && ! test -z "$DATABASE_PASSWORD" && ! test -z "$DATABASE_HOST" && ! test -z "$DATABASE_ENGINE"; then
@@ -99,6 +115,7 @@ else
         printf "\n${GREEN}INFO${NORMAL}: Database set.\n"
     else
         printf "\n${RED}ERROR${NORMAL}: Database not set --> skipping\n"
+        CORRECT = false
     fi
     # generating email info
 
@@ -107,6 +124,7 @@ else
         echo -e "EMAIL_HOST_PASSWORD='"$EMAIL_HOST_PASSWORD"'" >> $CONFIG
     else
         printf "\n${RED}ERROR${NORMAL}: Email not set --> skipping\n"
+        CORRECT = false
     fi
 fi
 
@@ -117,16 +135,19 @@ if $PYTHON manage.py migrate; then
     printf "\n${GREEN}INFO${NORMAL}: Database migration done.\n"
 else
     printf "\n${RED}ERROR${NORMAL}: Some problems in database migration.\n"
+    CORRECT = false
 fi
 if $PYTHON manage.py collectstatic;then
     printf "\n${GREEN}INFO${NORMAL}: Static collected.\n"
 else
     printf "\n${RED}ERROR${NORMAL}: Some problems in static collection.\n"
+    CORRECT = false
 fi
 if $PYTHON manage.py compilemessages;then
     printf "\n${GREEN}INFO${NORMAL}: Translations compiled.\n"
 else
     printf "\n${RED}ERROR${NORMAL}: Some problems in translations compilation.\n"
+    CORRECT = false
 fi
 
 read -p "$(printf "${YELLOW}WARNING${NORMAL}: Do you want to create a superuser? [y/n]?") " suyn
@@ -142,7 +163,10 @@ case $suyn in
     * ) ;;
 esac
 
-# restart nginx and wsgi
+# TODO: do Misa stuff (nginx,wsgi,...)
 
-
-printf "\n${GREEN}INFO${NORMAL}: All done.\n"
+if $CORRECT; then
+    printf "\n${GREEN}INFO${NORMAL}: All done.\n"
+else
+    printf "\n${RED}ERROR${NORMAL}: Some problems along the way, check the log.\n"
+fi
