@@ -8,7 +8,7 @@ NORMAL='\033[0m'
 
 read -p "$(printf "${YELLOW}WARNING${NORMAL}: Are you sure you are in an environment [y/n]?") " yn
 
-CORRECT = true
+ERROR=0       # 0 --> CORRECT, 1 --> POTENTIAL, 2 --> ERROR
 
 case $yn in
     [Yy]* ) ;;
@@ -31,6 +31,9 @@ fi
 
 if ! test -d "$DIR"; then
     mkdir $DIR
+fi
+
+if ! test -z "$DIR";then
     cd $DIR
 fi
 
@@ -64,11 +67,15 @@ if test -f "$REQUIREMENTS"; then
         printf "\n${GREEN}INFO${NORMAL}: Dependencies installed.\n"
     else
         printf "\n${RED}ERROR${NORMAL}: At least one dependency installed incorrectly.\n"
-        CORRECT = false
+        if [ $ERROR -le 2 ];then
+            ERROR=2
+        fi
     fi
 else 
     printf "\n${RED}ERROR${NORMAL}: Dependecies list missing.\n"
-    CORRECT = false
+    if [ $ERROR -le 2 ];then
+        ERROR=2
+    fi
 fi
 
 # Set up secret key, database, ... (.env file)
@@ -103,7 +110,9 @@ else
         printf "\n${GREEN}INFO${NORMAL}: Recaptcha set.\n"
     else
         printf "\n${RED}ERROR${NORMAL}: Recaptcha not set --> skipping\n"
-        CORRECT = false
+        if [ $ERROR -le 2 ];then
+            ERROR=2
+        fi
     fi
     # generating database
     if ! test -z "$DATABASE_NAME" && ! test -z "$DATABASE_USER" && ! test -z "$DATABASE_PASSWORD" && ! test -z "$DATABASE_HOST" && ! test -z "$DATABASE_ENGINE"; then
@@ -115,7 +124,9 @@ else
         printf "\n${GREEN}INFO${NORMAL}: Database set.\n"
     else
         printf "\n${RED}ERROR${NORMAL}: Database not set --> skipping\n"
-        CORRECT = false
+        if [ $ERROR -le 2 ];then
+            ERROR=2
+        fi
     fi
     # generating email info
 
@@ -124,7 +135,9 @@ else
         echo -e "EMAIL_HOST_PASSWORD='"$EMAIL_HOST_PASSWORD"'" >> $CONFIG
     else
         printf "\n${RED}ERROR${NORMAL}: Email not set --> skipping\n"
-        CORRECT = false
+        if [ $ERROR -le 2 ];then
+            ERROR=2
+        fi
     fi
 fi
 
@@ -135,19 +148,25 @@ if $PYTHON manage.py migrate; then
     printf "\n${GREEN}INFO${NORMAL}: Database migration done.\n"
 else
     printf "\n${RED}ERROR${NORMAL}: Some problems in database migration.\n"
-    CORRECT = false
+    if [ $ERROR -le 2 ];then
+        ERROR=2
+    fi
 fi
 if $PYTHON manage.py collectstatic;then
     printf "\n${GREEN}INFO${NORMAL}: Static collected.\n"
 else
     printf "\n${RED}ERROR${NORMAL}: Some problems in static collection.\n"
-    CORRECT = false
+    if [ $ERROR -le 1 ];then
+        ERROR=1
+    fi
 fi
 if $PYTHON manage.py compilemessages;then
     printf "\n${GREEN}INFO${NORMAL}: Translations compiled.\n"
 else
     printf "\n${RED}ERROR${NORMAL}: Some problems in translations compilation.\n"
-    CORRECT = false
+    if [ $ERROR -le 2 ];then
+        ERROR=2
+    fi
 fi
 
 read -p "$(printf "${YELLOW}WARNING${NORMAL}: Do you want to create a superuser? [y/n]?") " suyn
@@ -157,7 +176,7 @@ case $suyn in
         if $PYTHON manage.py createsuperuser;then
             printf "\n${GREEN}INFO${NORMAL}: Superuser created.\n"
         else
-            printf "\n${RED}ERROR${NORMAL}: There was a problem in superuser creation.\n"
+            printf "\n${RED}ERROR${NORMAL}: There was a problem in superuser creation or you declined it.\n"
         fi
     ;;
     * ) ;;
@@ -165,8 +184,10 @@ esac
 
 # TODO: do Misa stuff (nginx,wsgi,...)
 
-if $CORRECT; then
+if [ $ERROR -eq 0 ]; then
     printf "\n${GREEN}INFO${NORMAL}: All done.\n"
+elif [ $ERROR -eq 1 ];then
+    printf "\n${YELLOW}WARNING${NORMAL}: Some potential problems along the way, check the log.\n"
 else
     printf "\n${RED}ERROR${NORMAL}: Some problems along the way, check the log.\n"
 fi
