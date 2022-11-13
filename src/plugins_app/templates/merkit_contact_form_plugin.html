@@ -4,8 +4,8 @@
 <html>
     <section class="d-lg-flex align-items-center p-5 text-center text-md-start text-dark bg_img" id='{{instance.link_href}}'>
         <div class="container">
-            <div class="d-lg-flex align-items-center justify-content-between">
-                <div class="h3_heading me-lg-5 mb-5 mb-lg-0">
+            <div class="d-lg-flex align-items-center contact-container">
+                <div class="h3_heading me-lg-5 mb-5 mb-lg-0 contact-text-container">
                     <h3>{{ instance.title }}</h3>
                     <p>{{ instance.text }}</p>
 
@@ -32,7 +32,7 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="flex-fill ps-lg-5 ms-lg-5 contact-form-div">
+                <div class="flex-fill ps-lg-5 ms-lg-5 contact-form-container">
                     {% if form %}
                         <form class="contact-form needs-validation" id="form" novalidate action="#{{instance.link_href}}" name="contact_form" method="POST">
                             {% csrf_token %}

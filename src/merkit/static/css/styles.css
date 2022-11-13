@@ -239,6 +239,22 @@ input {
   }
 }
 
+.contact-container{
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 992px){
+  .contact-form-container{
+    max-width: 66.66%;
+  }
+}
+
+@media screen and (min-width: 992px){
+  .contact-text-container{
+    max-width: 33.33%;
+  }
+}
+
 .bg_img {
   background-image: url('../img/backgrounds/connect_light_bw.jpg');
   min-height: 100%;
@@ -332,11 +348,6 @@ input {
     width: 80%;
     min-height: 800px;
   }
-}
-
-.contact-form-div{
-  min-width: 60%;
-  max-width: 70%;
 }
 
 /* IMPORTANT */
