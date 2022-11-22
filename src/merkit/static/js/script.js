@@ -1,5 +1,19 @@
-//navbar navigation tabs
+// scaling of recaptcha
+$(document).ready(function(){
+  var parentWidth = $('.g-recaptcha').parent().width();
+  console.log(parentWidth)
+  const recaptchaWidth = 304;
+  if (parentWidth < recaptchaWidth){
+    var scale = parentWidth/recaptchaWidth;
+    $('.g-recaptcha').css('transform', 'scale(' + scale + ')');
+    $('.g-recaptcha').css('-webkit-transform', 'scale(' + scale + ')');
+    $('.g-recaptcha').css('transform-origin', '0 0');
+    $('.g-recaptcha').css('-webkit-transform-origin', '0 0');
+  }
+});
 
+
+//navbar navigation tabs
 // Add active class to the current button (highlight it)
 var header = document.getElementById("navbar-highlight");
 var btns = header.getElementsByClassName("nav-link");

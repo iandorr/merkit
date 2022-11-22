@@ -363,6 +363,13 @@ input {
   display: inline-block;
 }
 
+/* @media screen and (max-width: 992px){
+  .g-recaptcha{
+    transform: scale(0.4);
+    transform-origin:0 0;
+  }
+} */
+
 input[type=checkbox] {
   vertical-align: middle;
   position: relative;
@@ -382,8 +389,5 @@ label{
 @media all and (max-width: 559px){
   body{
     position: relative;
-  }
-  .g-recaptcha{
-    transform: scale(0.66);
   }
 }
