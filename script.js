@@ -291,4 +291,5 @@ window.onscroll = () => {
   })
 }
 
+// Hero video playback speed
 document.getElementById('hero-video').playbackRate = .7;
