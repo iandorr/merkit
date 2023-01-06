@@ -268,20 +268,7 @@ for (let c = 0; c < primNavLinks.length; c++) {
   })
 }
 
-// Add active class to nav link onclick
-// const header = document.getElementById("js-navbar-highlight");
-// var btns = header.getElementsByClassName("primary-nav__link");
-// for (var i = 0; i < btns.length; i++) {
-//   btns[i].addEventListener("click", function () {
-//     var current = document.getElementsByClassName("active");
-//     if (current.length != 0) {
-//       current[0].className = current[0].className.replace(" active", "");
-//     }
-//     this.className += " active";
-//   });
-// }
-
-// Navigation - active class based on scroll
+// Navigation - active class based on scroll / click in the menu
 const navPoints = document.querySelectorAll('.js-active-on-scroll')
 const navLinks = document.querySelectorAll('.primary-nav__link')
 
@@ -293,7 +280,6 @@ window.onscroll = () => {
     // console.log(section)
     if (scrollY >= sectionTop - 5) {
       currentScroll = section.getAttribute('id')
-      console.log(currentScroll)
     }
   })
 

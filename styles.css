@@ -156,10 +156,6 @@ body {
   }
 }
 
-h1 {
-  font-size: 80px;
-}
-
 h2 {
   font-size: 35px;
   font-weight: bold;
@@ -278,22 +274,6 @@ input {
   max-width: 1600px;
 }
 
-/* .showcase {
-  background-image: url(./img/backgrounds/showcase.jpg);
-  min-height: 100%;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-} */
-
-.showcase {
-  background: linear-gradient(to bottom, transparent, 80%, white), url(./img/backgrounds/showcase.jpg);
-  min-height: 100%;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .bg_img {
   background-image: url(./img/backgrounds/connect_light_bw.jpg);
   min-height: 100%;
@@ -406,7 +386,16 @@ input {
   --clr-black: #000000;
 
   --fs-normal: 16px;
-  --fs-bigger: 18px;
+  --fs-bigger: 1.125rem;
+  --fs-h1: 5rem;
+
+  --fw-normal: 400;
+  --fw-bold: 600;
+  --fw-light: 200;
+
+  --fls-accent-smaller: .125rem;
+  --fls-accent: .25rem;
+  --fls-accent-bigger: .25rem;
 }
 
 body {
@@ -414,6 +403,25 @@ body {
 }
 
 /* Basic Settings end*/
+
+/* General Classes */
+
+.main-container-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.main-container {
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 2rem;
+}
+
+/* General Classes end */
 
 /* Primary header */
 .primary-header {
@@ -503,6 +511,7 @@ body {
 
 .primary-nav__link {
   font-size: var(--fs-bigger);
+  letter-spacing: var(--fls-accent-smaller);
   text-decoration: none;
   
   color: var(--clr-primary);
@@ -516,3 +525,39 @@ body {
 }
 
 /* Primary header end */
+
+/* Showcase */
+
+.showcase {
+  position: relative;
+
+  display: flex;
+
+  background: url(./img/backgrounds/showcase.jpg);
+  min-height: 100vh;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.showcase::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* background-color: rgba(255, 255, 255, 0.5); */
+
+  z-index: 5;
+}
+
+.showcase__title {
+  display: flex;
+  align-items: center;
+
+  color: var(--clr-white);
+  font-size: min(15vw, var(--fs-h1));
+  font-weight: var(--fw-light);
+  letter-spacing: var(--fls-accent);
+  line-height: initial;
+
+  z-index: 10;
+}
