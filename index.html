@@ -1,50 +1,61 @@
 <!DOCTYPE html>
 <html lang="cz">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="styles.css" rel="stylesheet">
-    <!--
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
-    -->
-    <title>Merkit</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="styles.css" rel="stylesheet">
+  <!--
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;600&display=swap" rel="stylesheet">
+
+  <title>Merkit</title>
 </head>
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" tab-index="0">
 
-    <!-- Navigation bar -->
+  <!-- Primary header -->
+  <header class="primary-header">
+    <div class="primary-header__container">
+      <div class="primary-header__logo">
+        <a href="#">
+          <img src="./img/logo/logo_merkit.png" alt="Merkit">
+        </a>
+      </div>
 
-    <nav class="navbar navbar-expand-lg bg-white navbar-light" id="navScrollSpy">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="./img/logo/logo_merkit.png" alt="Merkit_logo" width="150px">
-            </a>
+      <button class="primary-nav__mobile-toggle" aria-controls="primary-nav" aria-expanded="false"></button>
+    
+      <ul id="js-navbar-highlight" class="primary-nav" data-visible="false">
+        <li class="primary-nav__item">
+          <a href="#about-us" class="primary-nav__link about-us">O nás</a>
+        </li>
+        <li class="primary-nav__item">
+          <a href="#services" class="primary-nav__link services">Služby</a>
+        </li>
+        <li class="primary-nav__item">
+          <a href="#products" class="primary-nav__link products">Produkty</a>
+        </li>
+        <li class="primary-nav__item">
+          <a href="#contact" class="primary-nav__link contact">Kontakt</a>
+        </li>
+      </ul>
+      
+    </div>
+  </header>
+  <!-- Primary header end -->
 
-            <button class="navbar-toggler" data-bs-target="#navmenu" data-bs-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <nav class="collapse navbar-collapse" id="navmenu">
-                <ul class="navbar-nav ms-auto nav-pills" data-spy="affix" id="navbar-highlight">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about-us">O NÁS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">SLUŽBY</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#products">PRODUKTY</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">KONTAKT</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </nav>
+
+
+
+
+
 
     <!-- Showcase -->
 
@@ -54,14 +65,18 @@
         </div>
     </section>
 
-    <section class="bg-white p-5 text-center text-dark" id="about-us">
+    <!-- About us -->
+
+    <section class="js-active-on-scroll bg-white p-5 text-center text-dark" id="about-us">
         <div class="container h3_heading_about">
             <h3>O NÁS</h3>
             <p>MERKIT je česká IT společnost, která se specializuje na správy systémů, IT bezpečnosti a vývoje aplikací na míru. Tvoří ji dynamický kolektiv nadšenců do IT, který dáe spolupracujeme s širokým spektrem specialistů s dlouholetými zkušenostmi v jednotlivých technologiích.</p>
         </div>
     </section>
 
-    <section class="bg-light p-5 text-center text-dark bg_img" id="services">
+    <!-- Services -->
+
+    <section class="js-active-on-scroll bg-light p-5 text-center text-dark bg_img" id="services">
         <div class="container h3_heading_about">
             <h3>Naše Služby</h3>
         </div>
@@ -107,7 +122,9 @@
         </div>
     </section>
 
-    <section id="products" class="p-5 text-center text-lg-start text-dark bg_img">
+    <!-- Products -->
+
+    <section id="products" class="js-active-on-scroll p-5 text-center text-lg-start text-dark bg_img">
         <div class="container h3_heading">
             <h3>Správa systému</h3>
         </div>
@@ -173,7 +190,8 @@
         </div>
     </section>
     
-    <section id="contact" class="d-lg-flex align-items-center p-5 text-center text-md-start text-dark bg_img">
+    <!-- Contact us -->
+    <section id="contact" class="js-active-on-scroll d-lg-flex align-items-center p-5 text-center text-md-start text-dark bg_img">
         <div class="container">
             <div class="d-lg-flex align-items-center justify-content-between">
                 <div class="h3_heading me-lg-5 mb-5 mb-lg-0">

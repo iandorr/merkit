@@ -1,16 +1,3 @@
-//navbar navigation tabs
-
-// Add active class to the current button (highlight it)
-var header = document.getElementById("navbar-highlight");
-var btns = header.getElementsByClassName("nav-link");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function () {
-    var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-  });
-}
-
 // Smooth scrolling for browsers that don't support CSS smooth scrolling
 if (
   window.getComputedStyle(document.documentElement).scrollBehavior !== "smooth"
@@ -228,46 +215,6 @@ const emailInvalid = document.querySelectorAll("#mail ~ .invalid-feedback");
   });
 })();
 
-
-
-
-
-
-
-
-
-// // aby po submite zostal vo view form
-// window.addEventListener("load", function () {
-//   // Change scroll behavior
-//   root.setAttribute("style", "scroll-behavior: auto;");
-//   window.addEventListener("load", function () {
-//     // form.style.display = "none";
-//     // gdpr.style.display = "none";
-//     // thankYouMessage.style.display = "flex";
-//   });
-//   // Timeout ensures styles are applied before scrolling
-//   setTimeout(function () {
-//     // Reset to CSS defaults.
-//     root.removeAttribute("style");
-//   }, 2);
-// });
-
-// $("body").scrollspy({ target: ".navbar" });
-
-// MAKE IT JUMP TO ANCHORS INSTEAD OF SCROLL (vymazanie data-bs-spy robi to co chcem)
-
-
-
-
-
-
-
-
-
-
-
-
-
 // aby po submite zostal vo view form
 window.addEventListener("load", function () {
   // Change scroll behavior
@@ -279,3 +226,81 @@ window.addEventListener("load", function () {
     root.removeAttribute("style");
   }, 2);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Navigation - mobile nav toggle
+
+const primNav = document.querySelector('.primary-nav');
+const primNavToggle = document.querySelector('.primary-nav__mobile-toggle');
+
+primNavToggle.addEventListener('click', () => {
+  const visible = primNav.getAttribute('data-visible');
+
+  if (visible === 'false') {
+    primNav.setAttribute('data-visible', true);
+    primNavToggle.setAttribute('aria-expanded', true);
+  } else if (visible === 'true') {
+    primNav.setAttribute('data-visible', false);
+    primNavToggle.setAttribute('aria-expanded', false);
+  }
+})
+
+// Navigation - hide mobile navigation when nav link is clicked
+
+const primNavLinks = document.querySelectorAll('.primary-nav__link');
+
+for (let c = 0; c < primNavLinks.length; c++) {
+  primNavLinks[c].addEventListener('click', () => {
+    primNav.setAttribute('data-visible', false);
+    primNavToggle.setAttribute('aria-expanded', false);
+  })
+}
+
+// Add active class to nav link onclick
+// const header = document.getElementById("js-navbar-highlight");
+// var btns = header.getElementsByClassName("primary-nav__link");
+// for (var i = 0; i < btns.length; i++) {
+//   btns[i].addEventListener("click", function () {
+//     var current = document.getElementsByClassName("active");
+//     if (current.length != 0) {
+//       current[0].className = current[0].className.replace(" active", "");
+//     }
+//     this.className += " active";
+//   });
+// }
+
+// Navigation - active class based on scroll
+const navPoints = document.querySelectorAll('.js-active-on-scroll')
+const navLinks = document.querySelectorAll('.primary-nav__link')
+
+window.onscroll = () => {
+  let currentScroll = ''
+
+  navPoints.forEach( section => {
+    const sectionTop = section.offsetTop
+    // console.log(section)
+    if (scrollY >= sectionTop - 5) {
+      currentScroll = section.getAttribute('id')
+      console.log(currentScroll)
+    }
+  })
+
+  navLinks.forEach( link => {
+    link.classList.remove('active')
+    if (link.classList.contains(currentScroll)) {
+      link.classList.add('active')
+    }
+  })
+}
