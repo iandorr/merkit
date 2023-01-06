@@ -290,3 +290,5 @@ window.onscroll = () => {
     }
   })
 }
+
+document.getElementById('hero-video').playbackRate = .7;
