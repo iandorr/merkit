@@ -291,5 +291,19 @@ window.onscroll = () => {
   })
 }
 
+// Navigation - hide on scrolldown, show on scrollup
+let prevScrollpos = window.pageYOffset
+window.onscroll = function() {
+  let currentScrollPos = window.pageYOffset
+  let header = document.getElementById('primary-header')
+  if (prevScrollpos > currentScrollPos) {
+    header.style.top = "0"
+  } else {
+    let headerHight = '-' + header.offsetHeight + 'px'
+    header.style.top = headerHight
+  }
+  prevScrollpos = currentScrollPos
+}
+
 // Hero video playback speed
 document.getElementById('hero-video').playbackRate = .7;
