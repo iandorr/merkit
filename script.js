@@ -271,9 +271,21 @@ for (let c = 0; c < primNavLinks.length; c++) {
 // Navigation - active class based on scroll / click in the menu
 const navPoints = document.querySelectorAll('.js-active-on-scroll')
 const navLinks = document.querySelectorAll('.primary-nav__link')
+let prevScrollpos = window.pageYOffset
+
 
 window.onscroll = () => {
   let currentScroll = ''
+
+  let currentScrollPos = window.pageYOffset
+  let header = document.getElementById('primary-header')
+  if (prevScrollpos > currentScrollPos) {
+    header.style.top = "0"
+  } else {
+    let headerHight = '-' + header.offsetHeight + 'px'
+    header.style.top = headerHight
+  }
+  prevScrollpos = currentScrollPos
 
   navPoints.forEach( section => {
     const sectionTop = section.offsetTop
@@ -292,18 +304,20 @@ window.onscroll = () => {
 }
 
 // Navigation - hide on scrolldown, show on scrollup
-let prevScrollpos = window.pageYOffset
-window.onscroll = function() {
-  let currentScrollPos = window.pageYOffset
-  let header = document.getElementById('primary-header')
-  if (prevScrollpos > currentScrollPos) {
-    header.style.top = "0"
-  } else {
-    let headerHight = '-' + header.offsetHeight + 'px'
-    header.style.top = headerHight
-  }
-  prevScrollpos = currentScrollPos
-}
+// let prevScrollpos = window.pageYOffset
+// window.onscroll = function() {
+//   let currentScrollPos = window.pageYOffset
+//   let header = document.getElementById('primary-header')
+//   if (prevScrollpos > currentScrollPos) {
+//     header.style.top = "0"
+//   } else {
+//     let headerHight = '-' + header.offsetHeight + 'px'
+//     header.style.top = headerHight
+//   }
+//   prevScrollpos = currentScrollPos
+// }
+
+// DEBUG - DOESNT WORK WITH THE ACTIVE SCROLL
 
 // Hero video playback speed
 document.getElementById('hero-video').playbackRate = .7;
