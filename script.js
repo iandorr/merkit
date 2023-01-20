@@ -274,23 +274,27 @@ const navLinks = document.querySelectorAll('.primary-nav__link')
 let prevScrollpos = window.pageYOffset
 
 
+let prevScrollPos = 0;
 window.onscroll = () => {
   let currentScroll = ''
 
   let currentScrollPos = window.pageYOffset
   let header = document.getElementById('primary-header')
-  if (prevScrollpos > currentScrollPos) {
+  if (prevScrollPos > currentScrollPos) {
     header.style.top = "0"
   } else {
     let headerHight = '-' + header.offsetHeight + 'px'
     header.style.top = headerHight
   }
-  prevScrollpos = currentScrollPos
+  prevScrollPos = currentScrollPos
+
+  if (prevScrollPos > currentScrollPos) {
+    currentScroll = ""
+  }
 
   navPoints.forEach( section => {
     const sectionTop = section.offsetTop
-    // console.log(section)
-    if (scrollY >= sectionTop - 5) {
+    if (currentScrollPos >= sectionTop + 800) {
       currentScroll = section.getAttribute('id')
     }
   })
