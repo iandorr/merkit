@@ -164,90 +164,74 @@
       </div>
     </section>
   </section>
-    
+
   <!-- Contact us -->
-  <section id="contact" class="js-active-on-scroll section--contact main-container-wrap || d-lg-flex align-items-center text-center text-md-start text-dark bg_img--contacts">
-    <div class="main-container ||">
-      <div class="d-lg-flex align-items-center justify-content-between">
-        <div class="section-header-container--left me-lg-5 mb-5 mb-lg-0">
+  <section id="contact" class="js-active-on-scroll section--contact main-container-wrap bg_img--contacts">
+    <div class="main-container">
+      <div class="contact-form__wrapper">
+        <div class="section-header-container--left">
           <h3 class="section-header text-light">Kontakt</h3>
           <p class="text-light">Kontaktujte našeho specialistu</p>
         </div>
-        <div class="flex-fill ps-lg-5 ms-lg-5">
-          <form class="contact-form || needs-validation" id="form" novalidate action="#contacts" >
-            <div class="">
-              <div class="mb-3">
-                <label class="form-label mail" for="mail">Email</label>
-                <input class="form-control" placeholder="me@domena.cz" type="email" name="mail" id="mail" required minlength="8">
-                <!-- <span class="valid-feedback">OK.</span> -->
-                <span class="error"></span>
-              </div>
+        <form class="contact-form || needs-validation" id="form" novalidate action="#contacts" >
+          <div class="contact-form__section">
+            <label for="mail">Email</label>
+            <input placeholder="me@domena.cz" type="email" name="mail" id="mail" required minlength="8">
+            <!-- <span class="valid-feedback">OK.</span> -->
+            <span class="error"></span>
+          </div>
+          <div class="contact-form__section">
+            <label for="first-name">Jméno</label>
+            <input placeholder="Jan" type="text" name="first-name" id="first-name" required pattern="[\p{Letter}\p{Mark}]+" minLength=3 maxLength=15>
+            <!-- <span class="valid-feedback">OK.</span> -->
+            <span class="error"></span>
+          </div>
+          <div class="contact-form__section">
+            <label for="last-name">Příjmení</label>
+            <input placeholder="Novák" type="text" name="last-name" id="last-name" required pattern="^[\p{Letter}\p{Mark}]+$" minLength=1 maxLength=35>
+            <!-- <span class="valid-feedback">OK.</span>  -->
+            <span class="error"></span>
+          </div>
+          <div class="contact-form__section">
+            <label for="countrycode">Telefonní číslo</label>
+            <!-- <label for="phone-number"></label>                           -->
+            <div class="contant-form__phone-wrap">
+              <input placeholder="+420" type="text" name="countrycode" id="countrycode" required pattern="^\+([0-9]{1,7})$">
+              <input placeholder="606 000 000" type="text" name="phone-number" id="phone-number" required pattern="^[0-9]+$" minLength=5 maxLength=15>
             </div>
-            <div class="">
-              <div class="">
-                <div class="mb-3">
-                  <label class="form-label" for="first-name">Jméno</label>
-                  <input class="form-control" placeholder="Jan" type="text" name="first-name" id="first-name" required pattern="[\p{Letter}\p{Mark}]+" minLength=3 maxLength=15>
-                  <!-- <span class="valid-feedback">OK.</span> -->
-                  <span class="error"></span>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label" for="last-name">Příjmení</label>
-                  <input class="form-control" placeholder="Novák" type="text" name="last-name" id="last-name" required pattern="^[\p{Letter}\p{Mark}]+$" minLength=1 maxLength=35>
-                  <!-- <span class="valid-feedback">OK.</span>  -->
-                  <span class="error"></span>
-                </div>
-              </div>
-            </div>
-            <div class="">
-              <div class="">
-                <div class="mb-3">
-                  <label class="form-label" for="countrycode">Telefonní číslo</label>
-                  <label class="form-label" for="phone-number"></label>                                    
-                  <div class="input-group">
-                    <input class="input-width-max form-control width-30 me-1" placeholder="+420" type="text" name="countrycode" id="countrycode" required pattern="^\+([0-9]{1,7})$">
-                    <input class="form-control" placeholder="606 000 000" type="text" name="phone-number" id="phone-number" required pattern="^[0-9]+$" minLength=5 maxLength=15>
-                    <!-- <span class="valid-feed">OK.</span> -->
-                    <span id="countrycode-error" class=""></span>
-                    <span id="phone-number-error" class=""></span>   
-                  </div>                                   
-                </div>
-              </div>
+            <!-- <span class="valid-feed">OK.</span> -->
+            <span id="countrycode-error"></span>
+            <span id="phone-number-error"></span>                                   
+          </div>
+          <div>
+            <div>
+              <span id="cc" class="valid-feedback error"></span>
             </div>
             <div>
-              <div>
-                <span id="cc" class="valid-feedback error"></span>
-              </div>
-              <div>
-                <span id="pn" class="valid-feedback error"></span>
-              </div>
+              <span id="pn" class="valid-feedback error"></span>
             </div>
-            <div class="">
-              <div class="mb-3">
-                <label class="form-label" for="subject">Předmět</label>
-                <input class="form-control" type="text" name="subject" id="subject" required minlength="4">
-                <!-- <span class="valid-feedback">OK.</span> -->
-                <span class="error"></span>
-              </div>
-            </div>
-            <div class="">
-              <div class="mb-3">
-                <label class="form-label" for="message">Zpráva</label>
-                <textarea class="form-control" name="message" id="message" required minlength="10" cols="20" rows="5"></textarea>
-                <!-- <span class="valid-feedback">OK.</span> -->
-                <span class="error"></span>
-              </div>
-            </div>
-            <div class="mb-3">
-              <button class="fw-bold fs-3 btn btn-primary my-5 width-100 py-2">Odeslat</button>
-            </div>
-            <div>
-              <p class="m-0 fs-5">
-                *Odesláním formuláře souhlasíte s obchodními podmínkami a zásadamy zpracování osobních údajů
-              </p>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div class="contact-form__section">
+            <label for="subject">Předmět</label>
+            <input type="text" name="subject" id="subject" required minlength="4">
+            <!-- <span class="valid-feedback">OK.</span> -->
+            <span class="error"></span>
+          </div>
+          <div class="contact-form__section">
+            <label for="message">Zpráva</label>
+            <textarea name="message" id="message" required minlength="10" cols="20" rows="5"></textarea>
+            <!-- <span class="valid-feedback">OK.</span> -->
+            <span class="error"></span>
+          </div>
+          <div class="contact-form__submit-btn--wrapper">
+            <button class="contact-form__submit-btn">Odeslat</button>
+          </div>
+          <div>
+            <p>
+              *Odesláním formuláře souhlasíte s obchodními podmínkami a zásadamy zpracování osobních údajů
+            </p>
+          </div>
+        </form>
       </div>
     </div>
   </section>
