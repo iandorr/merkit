@@ -18,10 +18,11 @@
 <body>
 
   <!-- Primary header -->
-  <header id="primary-header" class="primary-header">
+  <header id="primary-header" class="primary-header primary-header--blog">
     <div class="primary-header__container">
       <div class="primary-header__logo">
         <a href="#">
+          <p class="primary-header__logo--blog">Blog</p>
           <img src="./img/logo/bíle logo.png" alt="Merkit">
         </a>
       </div>
@@ -41,10 +42,10 @@
         <li class="primary-nav__item">
           <a href="#contact" class="primary-nav__link contact">Kontakt</a>
         </li>
-        <li class="primary-nav__item">
-          <input type="text" placeholder="Hledat...">
-          <button type="submit">
-            <img src="" alt="tlačítko hledat">
+        <li class="primary-nav__item primary-nav__search-box">
+          <input class="primary-nav__search-box__input" type="text" placeholder="Hledat...">
+          <button class="primary-nav__search-box__btn" type="submit">
+            <img src="./img/icons/loupe.png" alt="tlačítko hledat">
           </button>
         </li>
       </ul>
