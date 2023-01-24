@@ -342,15 +342,6 @@ body {
   border-bottom: 1px solid var(--clr-light);
 }
 
-.showcase::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-
-  z-index: 10;
-}
-
 .hero-video {
   position: absolute;
   right: 0;
@@ -605,21 +596,42 @@ body {
 
   position: relative;
   border-radius: 1rem;
+
+  flex: 1;
+}
+
+.card--1,
+.card--2,
+.card--3 {
+  transition: all .3s ease-out;
+  cursor: pointer;
 }
 
 .card--1 {
   background: rgb(155,66,89);
-  background: linear-gradient(25deg, rgba(155,66,89,0.25) 0%, rgba(155,66,89,0) 90%);
+  background: linear-gradient(25deg, rgba(155,66,89,0.20) 0%, rgba(155,66,89,0) 90%);
+}
+
+.card--1:hover {
+  scale: .975;
 }
 
 .card--2 {
   background: rgb(35,54,142);
-  background: linear-gradient(0deg, rgba(35,54,142,0.25) 0%, rgba(35,54,142,0) 90%);
+  background: linear-gradient(0deg, rgba(35,54,142,0.20) 0%, rgba(35,54,142,0) 90%);
+}
+
+.card--2:hover {
+  scale: 1.025;
 }
 
 .card--3 {
   background: rgb(156,51,0);
-  background: linear-gradient(-25deg, rgba(156,51,0,0.25) 0%, rgba(156,51,0,0) 90%);
+  background: linear-gradient(-25deg, rgba(156,51,0,0.20) 0%, rgba(156,51,0,0) 90%);
+}
+
+.card--3:hover {
+  scale: .975;
 }
 
 .card::before {
