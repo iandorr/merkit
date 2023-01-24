@@ -31,16 +31,10 @@
     
       <ul id="js-navbar-highlight" class="primary-nav" data-visible="false">
         <li class="primary-nav__item">
-          <a href="#about-us" class="primary-nav__link about-us">O nás</a>
+          <a href="#articles" class="primary-nav__link primary-nav__link--blog articles">Articles</a>
         </li>
         <li class="primary-nav__item">
-          <a href="#services" class="primary-nav__link services">Služby</a>
-        </li>
-        <li class="primary-nav__item">
-          <a href="#products" class="primary-nav__link products">Produkty</a>
-        </li>
-        <li class="primary-nav__item">
-          <a href="#contact" class="primary-nav__link contact">Kontakt</a>
+          <a href="#contact" class="primary-nav__link primary-nav__link--blog contact">Kontakt</a>
         </li>
         <li class="primary-nav__item primary-nav__search-box">
           <input class="primary-nav__search-box__input" type="text" placeholder="Hledat...">
@@ -52,9 +46,133 @@
       
     </div>
   </header>
-  <!-- Primary header end -->
+  <!-- Primary header - end -->
 
+  <!-- Articles -->
+  <section id="articles" class="js-active-on-scroll section--articles main-container-wrap">
+    <div class="main-container">
+      <div class="articles-wrap">
+        <div class="articles__upper">
+          <a class="article--top__link" href="#">
+            <article class="article--top">
+              <div class="article--top__overlay"></div>
+              <h2 class="article--top__title">Focus business</h2>
+              <p class="article--top__subtitle">Find your Solution</p>
+            </article>
+          </a>
+        </div>
+        <div class="articles__main">
+          <div class="articles__articles">
+            <a href="#" class="article__link">
+              <article class="article">
+                <div class="article__header">
+                  <h2 class="article__title">Improving lives with technology - HSE lighthouse project</h2>
+                  <p class="article__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto iure reiciendis autem soluta adipisci voluptatum perspiciatis. A cum delectus alias?</p>
+                </div>
+                <div class="article__author">
+                  <div class="article__atuhor-picture"></div>
+                  <div class="article__author-info">
+                    <h3 class="article__author-name">Peter</h3>
+                    <span class="article__published">7. Prosinec, 2022</span>
+                  </div>
+                </div>
+              </article>
+            </a>
 
+            <a href="#" class="article__link">
+              <article class="article">
+                <div class="article__header">
+                  <h2 class="article__title">Improving lives with technology - HSE lighthouse project</h2>
+                  <p class="article__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, nesciunt! Quae, dignissimos voluptates! Voluptatum quas possimus quaerat tempore quibusdam modi minima iure sapiente, placeat fugiat repellat est expedita ducimus, ab non soluta corporis, nesciunt voluptate deserunt fuga explicabo ratione facere!</p>
+                </div>
+                <div class="article__author">
+                  <div class="article__atuhor-picture"></div>
+                  <div class="article__author-info">
+                    <h3 class="article__author-name">Peter</h3>
+                    <span class="article__published">7. Prosinec, 2022</span>
+                  </div>
+                </div>
+              </article>
+            </a>
+          </div>
+          <div class="articles__adds" style="color: black;">asddddddddddddddddddddddddddddd</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Articles - end -->
+
+  <!-- Contact us -->
+  <section id="contact" class="js-active-on-scroll section--contact main-container-wrap bg_img--contacts">
+    <div class="main-container">
+      <div class="contact-form__wrapper">
+        <div class="section-header-container--left">
+          <h3 class="section-header text-light">Kontakt</h3>
+          <p class="text-light">Kontaktujte našeho specialistu</p>
+        </div>
+        <form class="contact-form || needs-validation" id="form" novalidate action="#contacts" >
+          <div class="contact-form__section">
+            <label for="mail">Email</label>
+            <input placeholder="me@domena.cz" type="email" name="mail" id="mail" required minlength="8">
+            <!-- <span class="valid-feedback">OK.</span> -->
+            <span class="error"></span>
+          </div>
+          <div class="contact-form__section">
+            <label for="first-name">Jméno</label>
+            <input placeholder="Jan" type="text" name="first-name" id="first-name" required pattern="[\p{Letter}\p{Mark}]+" minLength=3 maxLength=15>
+            <!-- <span class="valid-feedback">OK.</span> -->
+            <span class="error"></span>
+          </div>
+          <div class="contact-form__section">
+            <label for="last-name">Příjmení</label>
+            <input placeholder="Novák" type="text" name="last-name" id="last-name" required pattern="^[\p{Letter}\p{Mark}]+$" minLength=1 maxLength=35>
+            <!-- <span class="valid-feedback">OK.</span>  -->
+            <span class="error"></span>
+          </div>
+          <div class="contact-form__section">
+            <label for="countrycode">Telefonní číslo</label>
+            <!-- <label for="phone-number"></label>                           -->
+            <div class="contant-form__phone-wrap">
+              <input placeholder="+420" type="text" name="countrycode" id="countrycode" required pattern="^\+([0-9]{1,7})$">
+              <input placeholder="606 000 000" type="text" name="phone-number" id="phone-number" required pattern="^[0-9]+$" minLength=5 maxLength=15>
+            </div>
+            <!-- <span class="valid-feed">OK.</span> -->
+            <span id="countrycode-error"></span>
+            <span id="phone-number-error"></span>                                   
+          </div>
+          <div>
+            <div>
+              <span id="cc" class="valid-feedback error"></span>
+            </div>
+            <div>
+              <span id="pn" class="valid-feedback error"></span>
+            </div>
+          </div>
+          <div class="contact-form__section">
+            <label for="subject">Předmět</label>
+            <input type="text" name="subject" id="subject" required minlength="4">
+            <!-- <span class="valid-feedback">OK.</span> -->
+            <span class="error"></span>
+          </div>
+          <div class="contact-form__section">
+            <label for="message">Zpráva</label>
+            <textarea name="message" id="message" required minlength="10" cols="20" rows="5"></textarea>
+            <!-- <span class="valid-feedback">OK.</span> -->
+            <span class="error"></span>
+          </div>
+          <div class="contact-form__submit-btn--wrapper">
+            <button class="contact-form__submit-btn">Odeslat</button>
+          </div>
+          <div>
+            <p>
+              *Odesláním formuláře souhlasíte s obchodními podmínkami a zásadamy zpracování osobních údajů
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  
   <script src="script.js"></script>
 
 </body>

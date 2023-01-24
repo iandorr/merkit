@@ -324,4 +324,7 @@ window.onscroll = () => {
 // DEBUG - DOESNT WORK WITH THE ACTIVE SCROLL
 
 // Hero video playback speed
-document.getElementById('hero-video').playbackRate = .7;
+const herVideo = document.getElementById('hero-video')
+if (herVideo) {
+  herVideo.playbackRate = .7
+}
